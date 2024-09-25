@@ -38,28 +38,35 @@
         .container {
             padding: 20px;
         }
-        
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Jogging</h1>
-    <p>Informasi lengkap tentang manfaat dan tips untuk jogging.</p>
+    <h1 id="jogging-title">Jogging</h1>
+    <p id="jogging-description">Informasi lengkap tentang manfaat dan tips untuk jogging.</p>
+    
+    <div>
+        <label for="language-select">Choose Language:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
 </header>
 
 <nav>
     <a href="index.html">Home</a>
-    <a href="weight.html">Weight Training</a>
+    <a href="weight.html" id="nav1">Latihan Beban</a>
     <a href="yoga.html">Yoga</a>
 </nav>
 
 <div class="container">
-    <h2>Apa Itu Jogging?</h2>
-    <p>Jogging adalah bentuk lari santai yang efektif untuk meningkatkan kesehatan kardiovaskular. Aktivitas ini bisa dilakukan di berbagai tempat, seperti taman, gym, atau jalanan sekitar rumah.</p>
+    <h2 id="what-is-jogging-title">Apa Itu Jogging?</h2>
+    <p id="what-is-jogging-description">Jogging adalah bentuk lari santai yang efektif untuk meningkatkan kesehatan kardiovaskular. Aktivitas ini bisa dilakukan di berbagai tempat, seperti taman, gym, atau jalanan sekitar rumah.</p>
 
-    <h2>Manfaat Jogging</h2>
-    <ul>
+    <h2 id="benefits-title">Manfaat Jogging</h2>
+    <ul id="benefits-list">
         <li>Meningkatkan stamina dan kekuatan otot kaki.</li>
         <li>Membantu penurunan berat badan.</li>
         <li>Meningkatkan kesehatan jantung.</li>
@@ -67,10 +74,72 @@
         <li>Memperbaiki kualitas tidur.</li>
     </ul>
 
-    <h2>Tips untuk Jogging yang Efektif</h2>
-    <p>Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari.</p>
+    <h2 id="tips-title">Tips untuk Jogging yang Efektif</h2>
+    <p id="tips-description">Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari.</p>
 </div>
 
+<script>
+    const translations = {
+        en: {
+            nav1: "Weight Training",
+            title: "Jogging",
+            description: "Complete information about the benefits and tips for jogging.",
+            whatIsJogging: "What is Jogging?",
+            whatIsJoggingDesc: "Jogging is a form of slow running that is effective for improving cardiovascular health. This activity can be done in various places, such as parks, gyms, or the streets around your home.",
+            benefits: "Benefits of Jogging",
+            benefitList: [
+                "Improves stamina and leg muscle strength.",
+                "Helps with weight loss.",
+                "Enhances heart health.",
+                "Improves mood through the release of endorphins.",
+                "Improves sleep quality."
+            ],
+            tips: "Tips for Effective Jogging",
+            tipsDesc: "Start with warming up, choose the right shoes, and begin with short distances before increasing distance and speed. Make sure to stay hydrated and cool down after running."
+        },
+        id: {
+            nav1: "Latihan Beban",
+            title: "Jogging",
+            description: "Informasi lengkap tentang manfaat dan tips untuk jogging.",
+            whatIsJogging: "Apa Itu Jogging?",
+            whatIsJoggingDesc: "Jogging adalah bentuk lari santai yang efektif untuk meningkatkan kesehatan kardiovaskular. Aktivitas ini bisa dilakukan di berbagai tempat, seperti taman, gym, atau jalanan sekitar rumah.",
+            benefits: "Manfaat Jogging",
+            benefitList: [
+                "Meningkatkan stamina dan kekuatan otot kaki.",
+                "Membantu penurunan berat badan.",
+                "Meningkatkan kesehatan jantung.",
+                "Meningkatkan suasana hati melalui pelepasan endorfin.",
+                "Memperbaiki kualitas tidur."
+            ],
+            tips: "Tips untuk Jogging yang Efektif",
+            tipsDesc: "Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari."
+        }
+    };
+
+    function changeLanguage() {
+        const language = document.getElementById('language-select').value;
+        document.getElementById('jogging-title').innerText = translations[language].title;
+        document.getElementById('jogging-description').innerText = translations[language].description;
+
+        // What is Jogging Section
+        document.getElementById('what-is-jogging-title').innerText = translations[language].whatIsJogging;
+        document.getElementById('what-is-jogging-description').innerText = translations[language].whatIsJoggingDesc;
+
+        // Benefits Section
+        document.getElementById('benefits-title').innerText = translations[language].benefits;
+        const benefitsList = document.getElementById('benefits-list');
+        benefitsList.innerHTML = '';
+        translations[language].benefitList.forEach(benefit => {
+            const li = document.createElement('li');
+            li.innerText = benefit;
+            benefitsList.appendChild(li);
+        });
+
+        // Tips Section
+        document.getElementById('tips-title').innerText = translations[language].tips;
+        document.getElementById('tips-description').innerText = translations[language].tipsDesc;
+    }
+</script>
 
 </body>
 </html>

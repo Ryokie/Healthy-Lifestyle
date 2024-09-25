@@ -38,28 +38,35 @@
         .container {
             padding: 20px;
         }
-       
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Yoga</h1>
-    <p>Detail lengkap mengenai manfaat dan cara melakukan Yoga.</p>
+    <h1 id="title">Yoga</h1>
+    <p id="description">Detail lengkap mengenai manfaat dan cara melakukan Yoga.</p>
+
+    <div>
+        <label for="language-select">Pilih Bahasa:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
 </header>
 
 <nav>
     <a href="index.html">Home</a>
     <a href="jogging.html">Jogging</a>
-    <a href="weight.html">Weight Training</a>
+    <a href="weight.html" id="nav1">Latihan Beban</a>
 </nav>
 
 <div class="container">
-    <h2>Apa Itu Yoga?</h2>
-    <p>Yoga adalah bentuk latihan fisik dan meditasi yang melibatkan postur tubuh, teknik pernapasan, dan meditasi. Yoga bertujuan untuk menghubungkan tubuh dan pikiran serta membantu mencapai kesehatan fisik dan mental.</p>
+    <h2 id="definition-title">Apa Itu Yoga?</h2>
+    <p id="definition-description">Yoga adalah bentuk latihan fisik dan meditasi yang melibatkan postur tubuh, teknik pernapasan, dan meditasi. Yoga bertujuan untuk menghubungkan tubuh dan pikiran serta membantu mencapai kesehatan fisik dan mental.</p>
 
-    <h2>Manfaat Yoga</h2>
-    <ul>
+    <h2 id="benefits-title">Manfaat Yoga</h2>
+    <ul id="benefits-list">
         <li>Meningkatkan fleksibilitas dan keseimbangan.</li>
         <li>Meredakan stres dan kecemasan.</li>
         <li>Meningkatkan kekuatan otot.</li>
@@ -67,9 +74,72 @@
         <li>Meningkatkan kualitas tidur.</li>
     </ul>
 
-    <h2>Cara Memulai Yoga</h2>
-    <p>Untuk memulai yoga, Anda bisa bergabung dengan kelas yoga, mengikuti video panduan online, atau mempraktikkan gerakan dasar seperti pose anak (Child’s Pose), pose gunung (Mountain Pose), dan pose pohon (Tree Pose).</p>
+    <h2 id="start-title">Cara Memulai Yoga</h2>
+    <p id="start-description">Untuk memulai yoga, Anda bisa bergabung dengan kelas yoga, mengikuti video panduan online, atau mempraktikkan gerakan dasar seperti pose anak (Child’s Pose), pose gunung (Mountain Pose), dan pose pohon (Tree Pose).</p>
 </div>
+
+<script>
+    const translations = {
+        en: {
+            nav1 : "Weight Training",
+            title: "Yoga",
+            description: "Complete details about the benefits and how to practice Yoga.",
+            definitionTitle: "What is Yoga?",
+            definitionDescription: "Yoga is a form of physical exercise and meditation that involves body postures, breathing techniques, and meditation. Yoga aims to connect the body and mind and helps achieve physical and mental health.",
+            benefitsTitle: "Benefits of Yoga",
+            benefitsList: [
+                "Improves flexibility and balance.",
+                "Relieves stress and anxiety.",
+                "Increases muscle strength.",
+                "Improves posture.",
+                "Enhances sleep quality."
+            ],
+            startTitle: "How to Start Yoga",
+            startDescription: "To start yoga, you can join a yoga class, follow online tutorial videos, or practice basic movements such as Child’s Pose, Mountain Pose, and Tree Pose."
+        },
+        id: {
+            nav1: "Latihan Beban",
+            title: "Yoga",
+            description: "Detail lengkap mengenai manfaat dan cara melakukan Yoga.",
+            definitionTitle: "Apa Itu Yoga?",
+            definitionDescription: "Yoga adalah bentuk latihan fisik dan meditasi yang melibatkan postur tubuh, teknik pernapasan, dan meditasi. Yoga bertujuan untuk menghubungkan tubuh dan pikiran serta membantu mencapai kesehatan fisik dan mental.",
+            benefitsTitle: "Manfaat Yoga",
+            benefitsList: [
+                "Meningkatkan fleksibilitas dan keseimbangan.",
+                "Meredakan stres dan kecemasan.",
+                "Meningkatkan kekuatan otot.",
+                "Memperbaiki postur tubuh.",
+                "Meningkatkan kualitas tidur."
+            ],
+            startTitle: "Cara Memulai Yoga",
+            startDescription: "Untuk memulai yoga, Anda bisa bergabung dengan kelas yoga, mengikuti video panduan online, atau mempraktikkan gerakan dasar seperti pose anak (Child’s Pose), pose gunung (Mountain Pose), dan pose pohon (Tree Pose)."
+        }
+    };
+
+    function changeLanguage() {
+        const language = document.getElementById('language-select').value;
+        document.getElementById('title').innerText = translations[language].title;
+        document.getElementById('description').innerText = translations[language].description;
+
+        // Definition Section
+        document.getElementById('definition-title').innerText = translations[language].definitionTitle;
+        document.getElementById('definition-description').innerText = translations[language].definitionDescription;
+
+        // Benefits Section
+        document.getElementById('benefits-title').innerText = translations[language].benefitsTitle;
+        const benefitsList = document.getElementById('benefits-list');
+        benefitsList.innerHTML = '';
+        translations[language].benefitsList.forEach(benefit => {
+            const li = document.createElement('li');
+            li.innerText = benefit;  // Use innerText for plain text
+            benefitsList.appendChild(li);
+        });
+
+        // Start Section
+        document.getElementById('start-title').innerText = translations[language].startTitle;
+        document.getElementById('start-description').innerText = translations[language].startDescription;
+    }
+</script>
 
 </body>
 </html>

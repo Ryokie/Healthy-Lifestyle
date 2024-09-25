@@ -38,14 +38,21 @@
         .container {
             padding: 20px;
         }
-        
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Weight Training</h1>
-    <p>Informasi lengkap tentang latihan beban dan manfaatnya.</p>
+    <h1 id="title">Weight Training</h1>
+    <p id="description">Informasi lengkap tentang latihan beban dan manfaatnya.</p>
+
+    <div>
+        <label for="language-select">Pilih Bahasa:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
 </header>
 
 <nav>
@@ -55,11 +62,11 @@
 </nav>
 
 <div class="container">
-    <h2>Apa Itu Weight Training?</h2>
-    <p>Weight Training adalah bentuk latihan kekuatan yang melibatkan penggunaan beban, seperti dumbbell dan barbell, untuk melatih dan memperkuat otot tubuh.</p>
+    <h2 id="definition-title">Apa Itu Weight Training?</h2>
+    <p id="definition-description">Weight Training adalah bentuk latihan kekuatan yang melibatkan penggunaan beban, seperti dumbbell dan barbell, untuk melatih dan memperkuat otot tubuh.</p>
 
-    <h2>Manfaat Weight Training</h2>
-    <ul>
+    <h2 id="benefits-title">Manfaat Weight Training</h2>
+    <ul id="benefits-list">
         <li>Meningkatkan massa otot dan kekuatan.</li>
         <li>Memperbaiki postur tubuh dan mencegah cedera.</li>
         <li>Meningkatkan metabolisme dan membantu penurunan berat badan.</li>
@@ -67,9 +74,70 @@
         <li>Meningkatkan kepercayaan diri.</li>
     </ul>
 
-    <h2>Tips Memulai Weight Training</h2>
-    <p>Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan.</p>
+    <h2 id="tips-title">Tips Memulai Weight Training</h2>
+    <p id="tips-description">Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan.</p>
 </div>
+
+<script>
+    const translations = {
+        en: {
+            title: "Weight Training",
+            description: "Complete information about weight training and its benefits.",
+            definitionTitle: "What is Weight Training?",
+            definitionDescription: "Weight Training is a form of strength training that involves the use of weights, such as dumbbells and barbells, to train and strengthen the body's muscles.",
+            benefitsTitle: "Benefits of Weight Training",
+            benefitsList: [
+                "Increases muscle mass and strength.",
+                "Improves posture and prevents injuries.",
+                "Boosts metabolism and aids in weight loss.",
+                "Improves bone and joint health.",
+                "Enhances self-confidence."
+            ],
+            tipsTitle: "Tips for Starting Weight Training",
+            tipsDescription: "Start with light weights and focus on proper technique. Warm up before training and cool down afterward. Don't forget to rest adequately between training sessions."
+        },
+        id: {
+            title: "Weight Training",
+            description: "Informasi lengkap tentang latihan beban dan manfaatnya.",
+            definitionTitle: "Apa Itu Weight Training?",
+            definitionDescription: "Weight Training adalah bentuk latihan kekuatan yang melibatkan penggunaan beban, seperti dumbbell dan barbell, untuk melatih dan memperkuat otot tubuh.",
+            benefitsTitle: "Manfaat Weight Training",
+            benefitsList: [
+                "Meningkatkan massa otot dan kekuatan.",
+                "Memperbaiki postur tubuh dan mencegah cedera.",
+                "Meningkatkan metabolisme dan membantu penurunan berat badan.",
+                "Meningkatkan kesehatan tulang dan sendi.",
+                "Meningkatkan kepercayaan diri."
+            ],
+            tipsTitle: "Tips Memulai Weight Training",
+            tipsDescription: "Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan."
+        }
+    };
+
+    function changeLanguage() {
+        const language = document.getElementById('language-select').value;
+        document.getElementById('title').innerText = translations[language].title;
+        document.getElementById('description').innerText = translations[language].description;
+
+        // Definition Section
+        document.getElementById('definition-title').innerText = translations[language].definitionTitle;
+        document.getElementById('definition-description').innerText = translations[language].definitionDescription;
+
+        // Benefits Section
+        document.getElementById('benefits-title').innerText = translations[language].benefitsTitle;
+        const benefitsList = document.getElementById('benefits-list');
+        benefitsList.innerHTML = '';
+        translations[language].benefitsList.forEach(benefit => {
+            const li = document.createElement('li');
+            li.innerText = benefit;  // Use innerText for plain text
+            benefitsList.appendChild(li);
+        });
+
+        // Tips Section
+        document.getElementById('tips-title').innerText = translations[language].tipsTitle;
+        document.getElementById('tips-description').innerText = translations[language].tipsDescription;
+    }
+</script>
 
 </body>
 </html>

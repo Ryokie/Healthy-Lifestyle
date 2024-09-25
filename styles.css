@@ -102,7 +102,7 @@ footer p {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.3s;
+    transition: background 0.4s;
 }
 
 .button:hover {

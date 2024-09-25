@@ -38,7 +38,6 @@
         .container {
             padding: 20px;
         }
-       
     </style>
 </head>
 <body>
@@ -52,6 +51,10 @@
     <a href="index.html">Home</a>
     <a href="karbo.html">Complex Carbohydrates</a>
     <a href="protein.html">Healthy Protein</a>
+    <select id="languageSwitcher">
+        <option value="id">Indonesia</option>
+        <option value="en">English</option>
+    </select>
 </nav>
 
 <div class="container">
@@ -77,6 +80,70 @@
     <p>Tambahkan buah ke dalam sereal atau yoghurt saat sarapan, dan coba sertakan sayuran dalam setiap makan besar. Camilan seperti wortel dan apel juga merupakan pilihan sehat dan mudah.</p>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const translations = {
+            en: {
+                title: "Fruits and Vegetables",
+                subtitle: "Complete information about the benefits of consuming fruits and vegetables for health.",
+                importance: "The Importance of Consuming Fruits and Vegetables",
+                benefits: "Benefits of Fruits and Vegetables",
+                fruitExamples: "Examples of Fruits and Vegetables to Consume",
+                tips: "Tips for Eating More Fruits and Vegetables",
+                content1: "Fruits and vegetables are the main source of vitamins, minerals, and fiber that are essential for the body. They help maintain the immune system, support heart health, and reduce the risk of chronic diseases.",
+                benefit1: "Boost Immunity: The vitamin C and antioxidants help protect the body from infections.",
+                benefit2: "Heart Health: Fiber and potassium found in fruits and vegetables help maintain heart health.",
+                benefit3: "Aid Digestion: Fiber in fruits and vegetables prevents constipation and improves digestive health.",
+                benefit4: "Weight Control: Fruits and vegetables are low in calories, helping maintain an ideal weight.",
+                fruits: "Fruits: Apples, bananas, oranges, grapes, and strawberries.",
+                greenVeggies: "Green Vegetables: Spinach, broccoli, kale, and lettuce.",
+                coloredVeggies: "Colored Vegetables: Carrots, peppers, and tomatoes rich in vitamins A and C.",
+                tipContent: "Add fruit to your cereal or yogurt at breakfast, and try to include vegetables in every major meal. Snacks like carrots and apples are also healthy and easy choices."
+            },
+            id: {
+                title: "Buah dan Sayuran",
+                subtitle: "Informasi lengkap mengenai manfaat konsumsi buah dan sayuran untuk kesehatan.",
+                importance: "Pentingnya Konsumsi Buah dan Sayuran",
+                benefits: "Manfaat Buah dan Sayuran",
+                fruitExamples: "Contoh Buah dan Sayuran yang Baik Dikonsumsi",
+                tips: "Tips Mengonsumsi Lebih Banyak Buah dan Sayuran",
+                content1: "Buah dan sayuran adalah sumber utama vitamin, mineral, dan serat yang sangat diperlukan oleh tubuh. Mereka membantu menjaga sistem kekebalan tubuh, mendukung kesehatan jantung, dan mengurangi risiko penyakit kronis.",
+                benefit1: "Meningkatkan Imunitas: Kandungan vitamin C dan antioksidan membantu melindungi tubuh dari infeksi.",
+                benefit2: "Menyehatkan Jantung: Serat dan potasium yang ditemukan dalam buah dan sayuran membantu menjaga kesehatan jantung.",
+                benefit3: "Membantu Pencernaan: Serat dalam buah dan sayuran mencegah sembelit dan meningkatkan kesehatan pencernaan.",
+                benefit4: "Mengontrol Berat Badan: Buah dan sayuran rendah kalori sehingga membantu dalam menjaga berat badan ideal.",
+                fruits: "Buah-buahan: Apel, pisang, jeruk, anggur, dan stroberi.",
+                greenVeggies: "Sayuran Hijau: Bayam, brokoli, kangkung, dan selada.",
+                coloredVeggies: "Sayuran Berwarna: Wortel, paprika, dan tomat yang kaya akan vitamin A dan C.",
+                tipContent: "Tambahkan buah ke dalam sereal atau yoghurt saat sarapan, dan coba sertakan sayuran dalam setiap makan besar. Camilan seperti wortel dan apel juga merupakan pilihan sehat dan mudah."
+            }
+        };
+
+        const languageSwitcher = document.getElementById('languageSwitcher');
+        languageSwitcher.addEventListener('change', (e) => {
+            const selectedLanguage = e.target.value;
+            translatePage(selectedLanguage);
+        });
+
+        function translatePage(language) {
+            document.querySelector('header h1').textContent = translations[language].title;
+            document.querySelector('header p').textContent = translations[language].subtitle;
+            document.querySelector('.container h2:nth-of-type(1)').textContent = translations[language].importance;
+            document.querySelector('.container p:nth-of-type(1)').textContent = translations[language].content1;
+            document.querySelector('.container h2:nth-of-type(2)').textContent = translations[language].benefits;
+            document.querySelectorAll('.container ul:nth-of-type(1) li')[0].innerHTML = `<b>${translations[language].benefit1.split(': ')[0]}:</b> ${translations[language].benefit1.split(': ')[1]}`;
+            document.querySelectorAll('.container ul:nth-of-type(1) li')[1].innerHTML = `<b>${translations[language].benefit2.split(': ')[0]}:</b> ${translations[language].benefit2.split(': ')[1]}`;
+            document.querySelectorAll('.container ul:nth-of-type(1) li')[2].innerHTML = `<b>${translations[language].benefit3.split(': ')[0]}:</b> ${translations[language].benefit3.split(': ')[1]}`;
+            document.querySelectorAll('.container ul:nth-of-type(1) li')[3].innerHTML = `<b>${translations[language].benefit4.split(': ')[0]}:</b> ${translations[language].benefit4.split(': ')[1]}`;
+            document.querySelector('.container h2:nth-of-type(3)').textContent = translations[language].fruitExamples;
+            document.querySelectorAll('.container ul:nth-of-type(2) li')[0].innerHTML = `<b>${translations[language].fruits.split(': ')[0]}:</b> ${translations[language].fruits.split(': ')[1]}`;
+            document.querySelectorAll('.container ul:nth-of-type(2) li')[1].innerHTML = `<b>${translations[language].greenVeggies.split(': ')[0]}:</b> ${translations[language].greenVeggies.split(': ')[1]}`;
+            document.querySelectorAll('.container ul:nth-of-type(2) li')[2].innerHTML = `<b>${translations[language].coloredVeggies.split(': ')[0]}:</b> ${translations[language].coloredVeggies.split(': ')[1]}`;
+            document.querySelector('.container h2:nth-of-type(4)').textContent = translations[language].tips;
+            document.querySelector('.container p:nth-of-type(2)').textContent = translations[language].tipContent;
+        }
+    });
+</script>
 
 </body>
 </html>
