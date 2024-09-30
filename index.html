@@ -6,74 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthy Lifestyle</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background: #4CAF50;
-        }
-        .container {
-            padding: 20px;
-            text-align: center;
-        }
-        .card {
-            display: inline-block;
-            background: white;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .link-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .link-button:hover {
-            background: #45a049;
-        }
-    </style>
 </head>
 <body>
 
 <header>
     <h1 id="title">Welcome to Healthy Lifestyle</h1>
     <p id="subtitle">Your guide to living a healthier life</p>
-    
-    <div>
-        <label for="language-select">Choose Language:</label>
-        <select id="language-select" onchange="changeLanguage()">
+
+    <div id="language-selector">
+        <label for="language">Choose Language:</label>
+        <select id="language" onchange="changeLanguage()">
             <option value="en">English</option>
-            <option value="id">Bahasa Indonesia</option>
+            <option value="id">Indonesian</option>
         </select>
     </div>
 </header>
@@ -85,110 +29,179 @@
 
 <div class="container" id="main-content">
     <section id="sports">
-        <h2 id="sports-title">Olahraga</h2>
-        <div class="card">
-            <h3>Yoga</h3>
-            <p id="yoga-description">Yoga helps in improving flexibility, strength, and mind-body connection.</p>
-            <a href="yoga.html" class="link-button">Learn More</a>
+        <h2 id="sports-title">Sports</h2>
+        <div class="slideshow-container" id="sports-slideshow">
+            <div class="mySlides sportsSlides fade">
+                <div class="card">
+                    <h3 id="title-yoga">Yoga</h3>
+                    <p id="yoga-description">Yoga helps in improving flexibility, strength, and mind-body connection.</p>
+                    <a href="yoga.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="mySlides sportsSlides fade">
+                <div class="card">
+                    <h3 id="title-jogging">Jogging</h3>
+                    <p id="jogging-description">Jogging is a great cardiovascular exercise that helps in burning calories.</p>
+                    <a href="jogging.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="mySlides sportsSlides fade">
+                <div class="card">
+                    <h3 id="title-weight">Weight Training</h3>
+                    <p id="weight-description">Strength training helps build muscle mass and improve overall fitness.</p>
+                    <a href="weight.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="mySlides sportsSlides fade">
+                <div class="card">
+                    <h3 id="title-swimming">Swimming</h3>
+                    <p id="swimming-description">Swimming improves fitness, builds strength, enhances flexibility, reduces stress, and supports weight loss.</p>
+                    <a href="swimming.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Navigation arrows for sports -->
+            <a class="prev" onclick="plusSlides(-1, 'sportsSlides')">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 'sportsSlides')">&#10095;</a>
         </div>
-        <div class="card">
-            <h3 id="title1">Jogging</h3>
-            <p id="jogging-description">Jogging is a great cardiovascular exercise that helps in burning calories.</p>
-            <a href="jogging.html" class="link-button">Learn More</a>
-        </div>
-        <div class="card">
-            <h3 id="title2">Weight Training</h3>
-            <p id="weight-description">Strength training helps build muscle mass and improve overall fitness.</p>
-            <a href="weight.html" class="link-button">Learn More</a>
+        <br>
+
+        <!-- Dots/Indicators for sports -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1, 'sportsSlides')"></span>
+            <span class="dot" onclick="currentSlide(2, 'sportsSlides')"></span>
+            <span class="dot" onclick="currentSlide(3, 'sportsSlides')"></span>
+            <span class="dot" onclick="currentSlide(4, 'sportsSlides')"></span>
         </div>
     </section>
 
     <section id="healthy-food">
-        <h2 id="healthy-food-title">Makanan Sehat</h2>
-        <div class="card">
-            <h3 id="title3">Fruits and Vegetables</h3>
-            <p id="fruits-description">Eating fruits and vegetables improves overall health.</p>
-            <a href="buah-sayur.html" class="link-button">Learn More</a>
+        <h2 id="healthy-food-title">Healthy Food</h2>
+        <div class="slideshow-container" id="healthy-food-slideshow">
+            <div class="mySlides foodSlides fade" style="display: block;"> <!-- Display slide 1 by default -->
+                <div class="card">
+                    <h3 id="title-fruits">Fruits and Vegetables</h3>
+                    <p id="fruits-description">Eating fruits and vegetables improves overall health.</p>
+                    <a href="buah-sayur.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+            <div class="mySlides foodSlides fade">
+                <div class="card">
+                    <h3 id="title-protein">Healthy Protein</h3>
+                    <p id="protein-description">Proteins like fish and legumes are essential for growth and repair.</p>
+                    <a href="protein.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+            <div class="mySlides foodSlides fade">
+                <div class="card">
+                    <h3 id="title-carbs">Complex Carbohydrates</h3>
+                    <p id="carbs-description">Complex carbs like oats and quinoa provide sustained energy.</p>
+                    <a href="karbo.html" class="learn-more-button">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Navigation arrows for healthy food -->
+            <a class="prev" onclick="plusSlides(-1, 'foodSlides')">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 'foodSlides')">&#10095;</a>
         </div>
-        <div class="card">
-            <h3 id="title4">Healthy Protein</h3>
-            <p id="protein-description">Proteins like fish and legumes are essential for growth and repair.</p>
-            <a href="protein.html" class="link-button">Learn More</a>
-        </div>
-        <div class="card">
-            <h3 id="title5">Complex Carbohydrates</h3>
-            <p id="carbs-description">Complex carbs like oats and quinoa provide sustained energy.</p>
-            <a href="karbo.html" class="link-button">Learn More</a>
+        <br>
+
+        <!-- Dots/Indicators for healthy food -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1, 'foodSlides')"></span>
+            <span class="dot" onclick="currentSlide(2, 'foodSlides')"></span>
+            <span class="dot" onclick="currentSlide(3, 'foodSlides')"></span>
         </div>
     </section>
 </div>
 
 <script>
-    const translations = {
-        en: {
-            nav1: "Sports",
-            nav2: "Healthy food",
-            title: "Welcome to Healthy Lifestyle",
-            subtitle: "Your guide to living a healthier life",
-            sports: "Sports",
-            yoga: "Yoga helps in improving flexibility, strength, and mind-body connection.",
-            jogging: "Jogging is a great cardiovascular exercise that helps in burning calories.",
-            weightTraining: "Strength training helps build muscle mass and improve overall fitness.",
-            healthyFood: "Healthy Food",
-            fruits: "Eating fruits and vegetables improves overall health.",
-            protein: "Proteins like fish and legumes are essential for growth and repair.",
-            carbs: "Complex carbs like oats and quinoa provide sustained energy.",
-            title1 : "Jogging",
-            title2 : "Weight Training",
-            title3 : "Fruits and Vegetables",
-            title4 : "Healthy Protein",
-            title5 : "Complex Carbohydrates",
-        },
-        id: {
-            nav1: "Olahraga",
-            nav2: "Makanan Sehat",
-            title: "Selamat Datang di Gaya Hidup Sehat",
-            subtitle: "Panduan Anda untuk hidup lebih sehat",
-            sports: "Olahraga",
-            yoga: "Yoga membantu meningkatkan fleksibilitas, kekuatan, dan koneksi tubuh-pikiran.",
-            jogging: "Jogging adalah olahraga kardiovaskular yang bagus untuk membakar kalori.",
-            weightTraining: "Latihan kekuatan membantu membangun massa otot dan meningkatkan kebugaran secara keseluruhan.",
-            healthyFood: "Makanan Sehat",
-            fruits: "Mengkonsumsi buah dan sayuran dapat meningkatkan kesehatan tubuh.",
-            protein: "Protein seperti ikan dan kacang-kacangan penting untuk pertumbuhan dan perbaikan tubuh.",
-            carbs: "Karbohidrat kompleks seperti oats dan quinoa memberikan energi yang tahan lama.",
-            title1 : "Joging",
-            title2 : "Latihan Beban",
-            title3 : "Buah dan Sayuran",
-            title4 : "Protein Sehat",
-            title5 : "Karbohidrat Kompleks",
-        }
-    };
+// Slideshow logic for both sections
+let slideIndex = 1;
 
-    function changeLanguage() {
-        const language = document.getElementById('language-select').value;
-        document.getElementById('title').innerText = translations[language].title;
-        document.getElementById('subtitle').innerText = translations[language].subtitle;
-        document.getElementById('nav1').innerText = translations[language].nav1;
-        document.getElementById('nav2').innerText = translations[language].nav2;
-
-        // Sports Section
-        document.getElementById('sports-title').innerText = translations[language].sports;
-        document.getElementById('yoga-description').innerText = translations[language].yoga;
-        document.getElementById('jogging-description').innerText = translations[language].jogging;
-        document.getElementById('weight-description').innerText = translations[language].weightTraining;
-        document.getElementById('title1').innerText = translations[language].title1;
-        document.getElementById('title2').innerText = translations[language].title2;
-
-        // Healthy Food Section
-        document.getElementById('healthy-food-title').innerText = translations[language].healthyFood;
-        document.getElementById('fruits-description').innerText = translations[language].fruits;
-        document.getElementById('protein-description').innerText = translations[language].protein;
-        document.getElementById('carbs-description').innerText = translations[language].carbs;
-        document.getElementById('title3').innerText = translations[language].title3;
-        document.getElementById('title4').innerText = translations[language].title4;
-        document.getElementById('title5').innerText = translations[language].title5;
+function showSlides(n, slideClass) {
+    let i;
+    let slides = document.getElementsByClassName(slideClass);
+    let dots = document.querySelectorAll(`.${slideClass} ~ .dot`);
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
     }
+    slides[slideIndex-1].style.display = "block"; // Show current slide
+}
+
+function plusSlides(n, slideClass) {
+    slideIndex += n;
+    showSlides(slideIndex, slideClass);
+}
+
+function currentSlide(n, slideClass) {
+    slideIndex = n;
+    showSlides(slideIndex, slideClass);
+}
+
+// Initialize the "Sports" slideshow
+showSlides(slideIndex, 'sportsSlides');
+
+const translations = {
+    en: {
+        title: "Welcome to Healthy Lifestyle",
+        subtitle: "Your guide to living a healthier life",
+        nav1: "Sports",
+        nav2: "Healthy Food",
+        sportsTitle: "Sports",
+        titleYoga: "Yoga",
+        yogaDesc: "Yoga helps in improving flexibility, strength, and mind-body connection.",
+        titleFruits: "Fruits and Vegetables",
+        fruitsDesc: "Eating fruits and vegetables improves overall health.",
+        titleProtein: "Healthy Protein",
+        proteinDesc: "Proteins like fish and legumes are essential for growth and repair.",
+        titleCarbs: "Complex Carbohydrates",
+        carbsDesc: "Complex carbs like oats and quinoa provide sustained energy.",
+        healthyFoodTitle: "Healthy Food",
+    },
+    id: {
+        title: "Selamat Datang di Gaya Hidup Sehat",
+        subtitle: "Panduan Anda untuk hidup lebih sehat",
+        nav1: "Olahraga",
+        nav2: "Makanan Sehat",
+        sportsTitle: "Olahraga",
+        titleYoga: "Yoga",
+        yogaDesc: "Yoga membantu meningkatkan fleksibilitas, kekuatan, dan koneksi antara tubuh dan pikiran.",
+        titleFruits: "Buah-buahan dan Sayuran",
+        fruitsDesc: "Mengonsumsi buah-buahan dan sayuran meningkatkan kesehatan secara keseluruhan.",
+        titleProtein: "Protein Sehat",
+        proteinDesc: "Protein seperti ikan dan kacang-kacangan sangat penting untuk pertumbuhan dan perbaikan.",
+        titleCarbs: "Karbohidrat Kompleks",
+        carbsDesc: "Karbohidrat kompleks seperti oatmeal dan quinoa memberikan energi yang bertahan lama.",
+        healthyFoodTitle: "Makanan Sehat",
+    }
+};
+
+// Function to change the language
+function changeLanguage() {
+    const selectedLanguage = document.getElementById("language").value;
+    const translation = translations[selectedLanguage];
+
+    document.getElementById("title").innerText = translation.title;
+    document.getElementById("subtitle").innerText = translation.subtitle;
+    document.getElementById("nav1").innerText = translation.nav1;
+    document.getElementById("nav2").innerText = translation.nav2;
+    document.getElementById("sports-title").innerText = translation.sportsTitle;
+    document.getElementById("title-yoga").innerText = translation.titleYoga;
+    document.getElementById("yoga-description").innerText = translation.yogaDesc;
+    document.getElementById("healthy-food-title").innerText = translation.healthyFoodTitle; // Update healthy food title
+    document.getElementById("title-fruits").innerText = translation.titleFruits;
+    document.getElementById("fruits-description").innerText = translation.fruitsDesc;
+    document.getElementById("title-protein").innerText = translation.titleProtein;
+    document.getElementById("protein-description").innerText = translation.proteinDesc;
+    document.getElementById("title-carbs").innerText = translation.titleCarbs;
+    document.getElementById("carbs-description").innerText = translation.carbsDesc;
+}
 </script>
 
 </body>
