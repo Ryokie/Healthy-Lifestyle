@@ -14,7 +14,7 @@
     <p id="subtitle">Your guide to living a healthier life</p>
 
     <div id="language-selector">
-        <label for="language">Choose Language:</label>
+        <label id="language-label" for="language">Choose Language:</label>
         <select id="language" onchange="changeLanguage()">
             <option value="en">English</option>
             <option value="id">Indonesian</option>
@@ -29,7 +29,7 @@
 
 <div class="container" id="main-content">
     <section id="main">
-        <h1 id="sports-title">We will help you to reach healty lifestyle</h1>   
+        <h1 id="life-title">We will help you to reach healty lifestyle</h1>   
     </section>
     <section id="sports">
         <h2 id="sports-title">Sports</h2>
@@ -38,7 +38,7 @@
                 <div class="card">
                     <h3 id="title-yoga">Yoga</h3>
                     <p id="yoga-description">Yoga helps in improving flexibility, strength, and mind-body connection.</p>
-                    <a href="yoga.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-yoga" href="yoga.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                 <div class="card">
                     <h3 id="title-jogging">Jogging</h3>
                     <p id="jogging-description">Jogging is a great cardiovascular exercise that helps in burning calories.</p>
-                    <a href="jogging.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-jogging" href="jogging.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <div class="card">
                     <h3 id="title-weight">Weight Training</h3>
                     <p id="weight-description">Strength training helps build muscle mass and improve overall fitness.</p>
-                    <a href="weight.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-weight" href="weight.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                 <div class="card">
                     <h3 id="title-swimming">Swimming</h3>
                     <p id="swimming-description">Swimming improves fitness, builds strength, enhances flexibility, reduces stress, and supports weight loss.</p>
-                    <a href="swimming.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-swimming" href="swimming.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
 
@@ -88,21 +88,21 @@
                 <div class="card">
                     <h3 id="title-fruits">Fruits and Vegetables</h3>
                     <p id="fruits-description">Eating fruits and vegetables improves overall health.</p>
-                    <a href="buah-sayur.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-fruits" href="buah-sayur.html" class="learn-more-button">Learn More</a>   
                 </div>
             </div>
             <div class="mySlides foodSlides fade">
                 <div class="card">
                     <h3 id="title-protein">Healthy Protein</h3>
                     <p id="protein-description">Proteins like fish and legumes are essential for growth and repair.</p>
-                    <a href="protein.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-protein" href="protein.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
             <div class="mySlides foodSlides fade">
                 <div class="card">
                     <h3 id="title-carbs">Complex Carbohydrates</h3>
                     <p id="carbs-description">Complex carbs like oats and quinoa provide sustained energy.</p>
-                    <a href="karbo.html" class="learn-more-button">Learn More</a>
+                    <a id="learn-more-carbs" href="karbo.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
 
@@ -156,6 +156,7 @@ const translations = {
         subtitle: "Your guide to living a healthier life",
         nav1: "Sports",
         nav2: "Healthy Food",
+        lifeTitle: "We will help you to reach healty lifestyle",
         sportsTitle: "Sports",
         titleYoga: "Yoga",
         yogaDesc: "Yoga helps in improving flexibility, strength, and mind-body connection.",
@@ -166,12 +167,21 @@ const translations = {
         titleCarbs: "Complex Carbohydrates",
         carbsDesc: "Complex carbs like oats and quinoa provide sustained energy.",
         healthyFoodTitle: "Healthy Food",
+        buttons: "learn more",
+        chooseLanguage: "Choose Language",
+        titleJogging: "Jogging",
+        joggingDesc: "Jogging is a great cardiovascular exercise that helps in burning calories.",
+        titleWeight: "Weight Training",
+        weightDesc: "Strength training helps build muscle mass and improve overall fitness.",
+        titleSwimming: "Swimming",
+        swimmingDesc: "Swimming improves fitness, builds strength, enhances flexibility, reduces stress, and supports weight loss.",
     },
     id: {
         title: "Selamat Datang di Gaya Hidup Sehat",
         subtitle: "Panduan Anda untuk hidup lebih sehat",
         nav1: "Olahraga",
         nav2: "Makanan Sehat",
+        lifeTitle: "Kami akan membantu anda mencapai gaya hidup sehat",
         sportsTitle: "Olahraga",
         titleYoga: "Yoga",
         yogaDesc: "Yoga membantu meningkatkan fleksibilitas, kekuatan, dan koneksi antara tubuh dan pikiran.",
@@ -182,6 +192,15 @@ const translations = {
         titleCarbs: "Karbohidrat Kompleks",
         carbsDesc: "Karbohidrat kompleks seperti oatmeal dan quinoa memberikan energi yang bertahan lama.",
         healthyFoodTitle: "Makanan Sehat",
+        buttons: "pelajari lebih lanjut",
+        chooseLanguage: "Pilih Bahasa",
+        titleJogging: "Jogging",
+        joggingDesc: "Jogging adalah olahraga kardiovaskular yang sangat baik yang membantu membakar kalori.",
+        titleWeight: "Latihan Berat",
+        weightDesc: "Latihan kekuatan membantu membangun massa otot dan meningkatkan kebugaran secara keseluruhan.",
+        titleSwimming: "Renang",
+        swimmingDesc: "Renang meningkatkan kebugaran, membangun kekuatan, meningkatkan fleksibilitas, mengurangi stres, dan mendukung penurunan berat badan.",
+
     }
 };
 
@@ -194,6 +213,7 @@ function changeLanguage() {
     document.getElementById("subtitle").innerText = translation.subtitle;
     document.getElementById("nav1").innerText = translation.nav1;
     document.getElementById("nav2").innerText = translation.nav2;
+    document.getElementById("life-title").innerText = translation.lifeTitle;
     document.getElementById("sports-title").innerText = translation.sportsTitle;
     document.getElementById("title-yoga").innerText = translation.titleYoga;
     document.getElementById("yoga-description").innerText = translation.yogaDesc;
@@ -204,6 +224,35 @@ function changeLanguage() {
     document.getElementById("protein-description").innerText = translation.proteinDesc;
     document.getElementById("title-carbs").innerText = translation.titleCarbs;
     document.getElementById("carbs-description").innerText = translation.carbsDesc;
+    document.getElementById("learn-more-yoga").innerText = translation.buttons;
+    document.getElementById("learn-more-jogging").innerText = translation.buttons;
+    document.getElementById("learn-more-weight").innerText = translation.buttons;
+    document.getElementById("learn-more-swimming").innerText = translation.buttons;
+    document.getElementById("learn-more-fruits").innerText = translation.buttons;
+    document.getElementById("learn-more-protein").innerText = translation.buttons;
+    document.getElementById("learn-more-carbs").innerText = translation.buttons;
+    document.getElementById("language-label").innerText = translation.chooseLanguage;
+    document.getElementById("title-jogging").innerText = translation.titleJogging;
+    document.getElementById("jogging-description").innerText = translation.joggingDesc;
+    document.getElementById("title-weight").innerText = translation.titleWeight;
+    document.getElementById("weight-description").innerText = translation.weightDesc;
+    document.getElementById("title-swimming").innerText = translation.titleSwimming;
+    document.getElementById("swimming-description").innerText = translation.swimmingDesc;
+    document.getElementById("healthy-food-title").innerText = translation.healthyFoodTitle;
+    document.getElementById("title-fruits").innerText = translation.titleFruits;
+    document.getElementById("fruits-description").innerText = translation.fruitsDesc;
+    document.getElementById("title-protein").innerText = translation.titleProtein;
+    document.getElementById("protein-description").innerText = translation.proteinDesc;
+    document.getElementById("title-carbs").innerText = translation.titleCarbs;
+    document.getElementById("carbs-description").innerText = translation.carbsDesc;
+    document.getElementById("learn-more-yoga").innerText = translation.buttons;
+    document.getElementById("learn-more-jogging").innerText = translation.buttons;
+    document.getElementById("learn-more-weight").innerText = translation.buttons;
+    document.getElementById("learn-more-swimming").innerText = translation.buttons;
+    document.getElementById("learn-more-fruits").innerText = translation.buttons;
+    document.getElementById("learn-more-protein").innerText = translation.buttons;
+    document.getElementById("learn-more-carbs").innerText = translation.buttons;
+    document.getElementById("language-label").innerText = translation.chooseLanguage;
 }
 </script>
 

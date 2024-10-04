@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming - Healthy Lifestyle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1 id="swimming-title">Swimming</h1>
+    <p id="swimming-description">Complete information about the benefits and tips for swimming.</p>
+    
+    <div>
+        <label for="language-select">Choose Language:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="yoga.html" id="nav1">Yoga</a>
+    <a href="jogging.html">Jogging</a>
+    <a href="weight.html" id="nav1">Weight Training</a>
+    
+</nav>
+
+<div class="container">
+    <h2 id="what-is-swimming-title">What is Swimming?</h2>
+    <p id="what-is-swimming-description">Swimming is a low-impact, full-body exercise that enhances cardiovascular health, builds strength, and improves flexibility.</p>
+
+    <h2 id="benefits-title">Benefits of Swimming</h2>
+    <ul id="benefits-list">
+        <li>Improves cardiovascular health.</li>
+        <li>Builds muscle strength and endurance.</li>
+        <li>Enhances flexibility.</li>
+        <li>Reduces stress and improves mental health.</li>
+        <li>Supports weight management.</li>
+    </ul>
+
+    <h2 id="tips-title">Tips for Effective Swimming</h2>
+    <p id="tips-description">Start with basic techniques, ensure proper breathing, and gradually increase your distance and pace. Use appropriate swimming gear and always warm up before and cool down after swimming.</p>
+</div>
+
+<script>
+    const translations = {
+        en: {
+            nav1: "Yoga",
+            title: "Swimming",
+            description: "Complete information about the benefits and tips for swimming.",
+            whatIsSwimming: "What is Swimming?",
+            whatIsSwimmingDesc: "Swimming is a low-impact, full-body exercise that enhances cardiovascular health, builds strength, and improves flexibility.",
+            benefits: "Benefits of Swimming",
+            benefitList: [
+                "Improves cardiovascular health.",
+                "Builds muscle strength and endurance.",
+                "Enhances flexibility.",
+                "Reduces stress and improves mental health.",
+                "Supports weight management."
+            ],
+            tips: "Tips for Effective Swimming",
+            tipsDesc: "Start with basic techniques, ensure proper breathing, and gradually increase your distance and pace. Use appropriate swimming gear and always warm up before and cool down after swimming."
+        },
+        id: {
+            nav1: "Yoga",
+            title: "Renang",
+            description: "Informasi lengkap tentang manfaat dan tips untuk berenang.",
+            whatIsSwimming: "Apa Itu Renang?",
+            whatIsSwimmingDesc: "Renang adalah olahraga seluruh tubuh berdampak rendah yang meningkatkan kesehatan kardiovaskular, membangun kekuatan, dan meningkatkan fleksibilitas.",
+            benefits: "Manfaat Renang",
+            benefitList: [
+                "Meningkatkan kesehatan kardiovaskular.",
+                "Membangun kekuatan otot dan daya tahan.",
+                "Meningkatkan fleksibilitas.",
+                "Mengurangi stres dan meningkatkan kesehatan mental.",
+                "Mendukung manajemen berat badan."
+            ],
+            tips: "Tips untuk Renang yang Efektif",
+            tipsDesc: "Mulailah dengan teknik dasar, pastikan pernapasan yang tepat, dan secara bertahap tingkatkan jarak serta kecepatan. Gunakan perlengkapan renang yang sesuai dan selalu lakukan pemanasan sebelum dan pendinginan setelah berenang."
+        }
+    };
+
+    function changeLanguage() {
+        const language = document.getElementById('language-select').value;
+        document.getElementById('swimming-title').innerText = translations[language].title;
+        document.getElementById('swimming-description').innerText = translations[language].description;
+
+        // What is Swimming Section
+        document.getElementById('what-is-swimming-title').innerText = translations[language].whatIsSwimming;
+        document.getElementById('what-is-swimming-description').innerText = translations[language].whatIsSwimmingDesc;
+
+        // Benefits Section
+        document.getElementById('benefits-title').innerText = translations[language].benefits;
+        const benefitsList = document.getElementById('benefits-list');
+        benefitsList.innerHTML = '';
+        translations[language].benefitList.forEach(benefit => {
+            const li = document.createElement('li');
+            li.innerText = benefit;
+            benefitsList.appendChild(li);
+        });
+
+        // Tips Section
+        document.getElementById('tips-title').innerText = translations[language].tips;
+        document.getElementById('tips-description').innerText = translations[language].tipsDesc;
+    }
+</script>
+
+</body>
+</html>
