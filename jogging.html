@@ -44,9 +44,20 @@
 
     <h2 id="tips-title">Tips untuk Jogging yang Efektif</h2>
     <p id="tips-description">Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari.</p>
+
+    <!-- Tracking Section -->
+    <h2 id="tracking-title">Pelacakan Jogging Anda</h2>
+    <button id="start-button" onclick="startJogging()">Mulai Jogging</button>
+    <button id="stop-button" onclick="stopJogging()" disabled>Berhenti Jogging</button>
+    <p id="tracking-result"></p>
 </div>
 
 <script>
+    let joggingInterval;
+    let startTime;
+    let totalDistance = 0; // Total distance in km
+    const averageSpeed = 6; // Average speed in km/h (this can be adjusted)
+
     const translations = {
         en: {
             nav1: "Weight Training",
@@ -63,7 +74,11 @@
                 "Improves sleep quality."
             ],
             tips: "Tips for Effective Jogging",
-            tipsDesc: "Start with warming up, choose the right shoes, and begin with short distances before increasing distance and speed. Make sure to stay hydrated and cool down after running."
+            tipsDesc: "Start with warming up, choose the right shoes, and begin with short distances before increasing distance and speed. Make sure to stay hydrated and cool down after running.",
+            trackingTitle: "Track Your Jogging",
+            startButton: "Start Jogging",
+            stopButton: "Stop Jogging",
+            resultText: "You ran: "
         },
         id: {
             nav1: "Latihan Beban",
@@ -80,7 +95,11 @@
                 "Memperbaiki kualitas tidur."
             ],
             tips: "Tips untuk Jogging yang Efektif",
-            tipsDesc: "Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari."
+            tipsDesc: "Mulailah dengan pemanasan, pilih sepatu yang tepat, dan mulailah dengan jarak pendek sebelum meningkatkan jarak dan kecepatan. Pastikan tetap terhidrasi dan lakukan pendinginan setelah berlari.",
+            trackingTitle: "Pelacakan Jogging Anda",
+            startButton: "Mulai Jogging",
+            stopButton: "Berhenti Jogging",
+            resultText: "Anda berlari: "
         }
     };
 
@@ -106,6 +125,33 @@
         // Tips Section
         document.getElementById('tips-title').innerText = translations[language].tips;
         document.getElementById('tips-description').innerText = translations[language].tipsDesc;
+
+        // Tracking Section
+        document.getElementById('tracking-title').innerText = translations[language].trackingTitle;
+        document.getElementById('start-button').innerText = translations[language].startButton;
+        document.getElementById('stop-button').innerText = translations[language].stopButton;
+    }
+
+    function startJogging() {
+        startTime = Date.now();
+        joggingInterval = setInterval(updateJogging, 1000); // Update every second
+        document.getElementById('start-button').disabled = true;
+        document.getElementById('stop-button').disabled = false;
+    }
+
+    function stopJogging() {
+        clearInterval(joggingInterval);
+        document.getElementById('start-button').disabled = false;
+        document.getElementById('stop-button').disabled = true;
+        const resultText = document.getElementById('tracking-result');
+        resultText.innerText += ` ${totalDistance.toFixed(2)} km`;
+        totalDistance = 0; // Reset distance for next run
+    }
+
+    function updateJogging() {
+        const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
+        const distance = (elapsedTime / 3600) * averageSpeed; // Distance in km
+        totalDistance = distance; // Update total distance
     }
 </script>
 
