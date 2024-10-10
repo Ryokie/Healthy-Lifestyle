@@ -57,6 +57,8 @@
     let startTime;
     let totalDistance = 0; // Total distance in km
     const averageSpeed = 6; // Average speed in km/h (this can be adjusted)
+    let isMoving = false; // Track whether the user is moving
+    let motionThreshold = 1.5; // Threshold for movement detection
 
     const translations = {
         en: {
@@ -134,9 +136,13 @@
 
     function startJogging() {
         startTime = Date.now();
+        totalDistance = 0; // Reset total distance
         joggingInterval = setInterval(updateJogging, 1000); // Update every second
         document.getElementById('start-button').disabled = true;
         document.getElementById('stop-button').disabled = false;
+
+        // Start motion tracking
+        window.addEventListener('devicemotion', handleMotion);
     }
 
     function stopJogging() {
@@ -145,13 +151,27 @@
         document.getElementById('stop-button').disabled = true;
         const resultText = document.getElementById('tracking-result');
         resultText.innerText += ` ${totalDistance.toFixed(2)} km`;
-        totalDistance = 0; // Reset distance for next run
+
+        // Stop motion tracking
+        window.removeEventListener('devicemotion', handleMotion);
     }
 
     function updateJogging() {
-        const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
-        const distance = (elapsedTime / 3600) * averageSpeed; // Distance in km
-        totalDistance = distance; // Update total distance
+        if (isMoving) {
+            const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
+            const distance = (elapsedTime / 3600) * averageSpeed; // Distance in km
+            totalDistance = distance; // Update total distance
+        }
+    }
+
+    function handleMotion(event) {
+        const acceleration = event.accelerationIncludingGravity;
+
+        // Calculate the total acceleration
+        const totalAcceleration = Math.sqrt(acceleration.x ** 2 + acceleration.y ** 2 + acceleration.z ** 2);
+        
+        // Check if the total acceleration exceeds the threshold
+        isMoving = totalAcceleration > motionThreshold;
     }
 </script>
 

@@ -44,6 +44,88 @@
 
     <h2 id="tips-title">Tips Memulai Weight Training</h2>
     <p id="tips-description">Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan.</p>
+
+    <h2>Progress Latihan</h2>
+
+    <!-- Progress Container -->
+    <div class="progress-container">
+        <div>
+            <h3 id="head-title">Kepala</h3>
+            <progress id="head-progress" value="0" max="100"></progress>
+            <p id="head-progress-text">Progress Kepala: 0%</p>
+            <button onclick="increaseProgress('head', 15)">Selesaikan Latihan Kepala (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="neck-title">Leher</h3>
+            <progress id="neck-progress" value="0" max="100"></progress>
+            <p id="neck-progress-text">Progress Leher: 0%</p>
+            <button onclick="increaseProgress('neck', 15)">Selesaikan Latihan Leher (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="shoulders-title">Bahu</h3>
+            <progress id="shoulders-progress" value="0" max="100"></progress>
+            <p id="shoulders-progress-text">Progress Bahu: 0%</p>
+            <button onclick="increaseProgress('shoulders', 15)">Selesaikan Latihan Bahu (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="jaw-title">Rahang</h3>
+            <progress id="jaw-progress" value="0" max="100"></progress>
+            <p id="jaw-progress-text">Progress Rahang: 0%</p>
+            <button onclick="increaseProgress('jaw', 15)">Selesaikan Latihan Rahang (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="arms-title">Otota Lengan</h3>
+            <progress id="arms-progress" value="0" max="100"></progress>
+            <p id="arms-progress-text">Progress Lengan: 0%</p>
+            <button onclick="increaseProgress('arms', 15)">Selesaikan Latihan Lengan (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="abs-title">Perut</h3>
+            <progress id="abs-progress" value="0" max="100"></progress>
+            <p id="abs-progress-text">Progress Perut: 0%</p>
+            <button onclick="increaseProgress('abs', 15)">Selesaikan Latihan Perut (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="back-title">Punggung</h3>
+            <progress id="back-progress" value="0" max="100"></progress>
+            <p id="back-progress-text">Progress Punggung: 0%</p>
+            <button onclick="increaseProgress('back', 15)">Selesaikan Latihan Punggung (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="legs-title">Kaki</h3>
+            <progress id="legs-progress" value="0" max="100"></progress>
+            <p id="legs-progress-text">Progress Kaki: 0%</p>
+            <button onclick="increaseProgress('legs', 15)">Selesaikan Latihan Kaki (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="triceps-title">Triceps</h3>
+            <progress id="triceps-progress" value="0" max="100"></progress>
+            <p id="triceps-progress-text">Progress Triceps: 0%</p>
+            <button onclick="increaseProgress('triceps', 15)">Selesaikan Latihan Triceps (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="biceps-title">Biceps</h3>
+            <progress id="biceps-progress" value="0" max="100"></progress>
+            <p id="biceps-progress-text">Progress Biceps: 0%</p>
+            <button onclick="increaseProgress('biceps', 15)">Selesaikan Latihan Biceps (Tambah 15%)</button>
+        </div>
+
+        <div>
+            <h3 id="calves-title">Betis</h3>
+            <progress id="calves-progress" value="0" max="100"></progress>
+            <p id="calves-progress-text">Progress Betis: 0%</p>
+            <button onclick="increaseProgress('calves', 15)">Selesaikan Latihan Betis (Tambah 15%)</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -62,7 +144,22 @@
                 "Enhances self-confidence."
             ],
             tipsTitle: "Tips for Starting Weight Training",
-            tipsDescription: "Start with light weights and focus on proper technique. Warm up before training and cool down afterward. Don't forget to rest adequately between training sessions."
+            tipsDescription: "Start with light weights and focus on proper technique. Warm up before training and cool down afterward. Don't forget to rest adequately between training sessions.",
+            bodyParts: {
+                head: "Head",
+                neck: "Neck",
+                shoulders: "Shoulders",
+                jaw: "Jaw",
+                arms: "Arms",
+                abs: "Abs",
+                back: "Back",
+                legs: "Legs",
+                triceps: "Triceps",
+                biceps: "Biceps",
+                calves: "Calves"
+            },
+            progressText: "Progress",
+            completeButton: "Finish Training (Add 15%)"
         },
         id: {
             title: "Weight Training",
@@ -78,32 +175,68 @@
                 "Meningkatkan kepercayaan diri."
             ],
             tipsTitle: "Tips Memulai Weight Training",
-            tipsDescription: "Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan."
+            tipsDescription: "Mulailah dengan beban ringan dan fokus pada teknik yang benar. Lakukan pemanasan sebelum berlatih dan pendinginan setelah selesai. Jangan lupa untuk beristirahat cukup antara sesi latihan.",
+            bodyParts: {
+                head: "Kepala",
+                neck: "Leher",
+                shoulders: "Bahu",
+                jaw: "Rahang",
+                arms: "Lengan",
+                abs: "Perut",
+                back: "Punggung",
+                legs: "Kaki",
+                triceps: "Triceps",
+                biceps: "Biceps",
+                calves: "Betis"
+            },
+            progressText: "Progress",
+            completeButton: "Selesaikan Latihan (Tambah 15%)"
         }
     };
 
     function changeLanguage() {
-        const language = document.getElementById('language-select').value;
-        document.getElementById('title').innerText = translations[language].title;
-        document.getElementById('description').innerText = translations[language].description;
+        const language = document.getElementById("language-select").value;
+        const currentTranslation = translations[language];
 
-     
-        document.getElementById('definition-title').innerText = translations[language].definitionTitle;
-        document.getElementById('definition-description').innerText = translations[language].definitionDescription;
+        // Update content based on selected language
+        document.getElementById("title").innerText = currentTranslation.title;
+        document.getElementById("description").innerText = currentTranslation.description;
+        document.getElementById("definition-title").innerText = currentTranslation.definitionTitle;
+        document.getElementById("definition-description").innerText = currentTranslation.definitionDescription;
+        document.getElementById("benefits-title").innerText = currentTranslation.benefitsTitle;
 
-   
-        document.getElementById('benefits-title').innerText = translations[language].benefitsTitle;
-        const benefitsList = document.getElementById('benefits-list');
-        benefitsList.innerHTML = '';
-        translations[language].benefitsList.forEach(benefit => {
-            const li = document.createElement('li');
-            li.innerText = benefit;  // Use innerText for plain text
+        const benefitsList = document.getElementById("benefits-list");
+        benefitsList.innerHTML = ""; // Clear current list
+        currentTranslation.benefitsList.forEach((benefit) => {
+            const li = document.createElement("li");
+            li.innerText = benefit;
             benefitsList.appendChild(li);
         });
 
+        document.getElementById("tips-title").innerText = currentTranslation.tipsTitle;
+        document.getElementById("tips-description").innerText = currentTranslation.tipsDescription;
 
-        document.getElementById('tips-title').innerText = translations[language].tipsTitle;
-        document.getElementById('tips-description').innerText = translations[language].tipsDescription;
+        // Update body part titles and buttons
+        for (let part in currentTranslation.bodyParts) {
+            document.getElementById(`${part}-title`).innerText = currentTranslation.bodyParts[part];
+            document.getElementById(`${part}-progress-text`).innerText = `${currentTranslation.progressText} ${currentTranslation.bodyParts[part]}: 0%`;
+            document.querySelector(`[onclick="increaseProgress('${part}', 15)"]`).innerText = `${currentTranslation.completeButton}`;
+        }
+    }
+
+    function increaseProgress(part, amount) {
+        const progressElement = document.getElementById(`${part}-progress`);
+        const progressTextElement = document.getElementById(`${part}-progress-text`);
+
+        let currentValue = parseInt(progressElement.value);
+        let newValue = currentValue + amount;
+
+        if (newValue > 100) {
+            newValue = 100; // Set maximum value to 100%
+        }
+
+        progressElement.value = newValue;
+        progressTextElement.innerText = `Progress ${document.getElementById(`${part}-title`).innerText}: ${newValue}%`;
     }
 </script>
 

@@ -27,7 +27,6 @@
     <a href="yoga.html" id="nav1">Yoga</a>
     <a href="jogging.html">Jogging</a>
     <a href="weight.html" id="nav1">Weight Training</a>
-    
 </nav>
 
 <div class="container">
@@ -45,9 +44,33 @@
 
     <h2 id="tips-title">Tips for Effective Swimming</h2>
     <p id="tips-description">Start with basic techniques, ensure proper breathing, and gradually increase your distance and pace. Use appropriate swimming gear and always warm up before and cool down after swimming.</p>
+
+    <h2 id="endurance-title">Water Endurance</h2>
+    <p id="endurance-description">Track how long you can endure underwater training.</p>
+
+    <label for="endurance-time">Total Time (seconds):</label>
+    <input type="number" id="endurance-time" value="60" min="0">
+
+    <label for="endurance-minutes">Minutes:</label>
+    <input type="number" id="endurance-minutes" value="0" min="0">
+    
+    <label for="endurance-seconds">Seconds:</label>
+    <input type="number" id="endurance-seconds" value="60" min="0" max="59">
+
+    <button id="start-button" onclick="startTraining()">Start Training</button>
+    <button id="pause-button" onclick="pauseTraining()" disabled>Pause</button>
+    <button id="cancel-button" onclick="cancelTraining()" disabled>Cancel</button>
+    
+    <progress id="endurance-progress" value="0" max="100"></progress>
+    <p id="endurance-progress-text">Time Left: 0s</p>
 </div>
 
 <script>
+    let interval;
+    let totalTime; // Total time in seconds
+    let timeLeft; // Time left
+    let isPaused = false; // Pause status
+
     const translations = {
         en: {
             nav1: "Yoga",
@@ -64,7 +87,16 @@
                 "Supports weight management."
             ],
             tips: "Tips for Effective Swimming",
-            tipsDesc: "Start with basic techniques, ensure proper breathing, and gradually increase your distance and pace. Use appropriate swimming gear and always warm up before and cool down after swimming."
+            tipsDesc: "Start with basic techniques, ensure proper breathing, and gradually increase your distance and pace. Use appropriate swimming gear and always warm up before and cool down after swimming.",
+            trainingComplete: "Training Complete!",
+            trainingCanceled: "Training Canceled!",
+            enduranceTitle: "Water Endurance",
+            enduranceDesc: "Track how long you can endure underwater training.",
+            minutesLabel: "Minutes:",
+            secondsLabel: "Seconds:",
+            startButton: "Start Training",
+            pauseButton: "Pause",
+            cancelButton: "Cancel"
         },
         id: {
             nav1: "Yoga",
@@ -81,12 +113,24 @@
                 "Mendukung manajemen berat badan."
             ],
             tips: "Tips untuk Renang yang Efektif",
-            tipsDesc: "Mulailah dengan teknik dasar, pastikan pernapasan yang tepat, dan secara bertahap tingkatkan jarak serta kecepatan. Gunakan perlengkapan renang yang sesuai dan selalu lakukan pemanasan sebelum dan pendinginan setelah berenang."
+            tipsDesc: "Mulailah dengan teknik dasar, pastikan pernapasan yang tepat, dan secara bertahap tingkatkan jarak serta kecepatan. Gunakan perlengkapan renang yang sesuai dan selalu lakukan pemanasan sebelum dan pendinginan setelah berenang.",
+            trainingComplete: "Latihan Selesai!",
+            trainingCanceled: "Latihan Dibatalkan!",
+            enduranceTitle: "Daya Tahan Air",
+            enduranceDesc: "Lacak seberapa lama Anda bisa bertahan di bawah air.",
+            minutesLabel: "Menit:",
+            secondsLabel: "Detik:",
+            startButton: "Mulai Latihan",
+            pauseButton: "Jeda",
+            cancelButton: "Batal"
         }
     };
 
     function changeLanguage() {
         const language = document.getElementById('language-select').value;
+        localStorage.setItem('language', language); // Save selected language
+
+        // Update text according to selected language
         document.getElementById('swimming-title').innerText = translations[language].title;
         document.getElementById('swimming-description').innerText = translations[language].description;
 
@@ -107,7 +151,95 @@
         // Tips Section
         document.getElementById('tips-title').innerText = translations[language].tips;
         document.getElementById('tips-description').innerText = translations[language].tipsDesc;
+
+        // Update endurance section
+        document.getElementById('endurance-title').innerText = translations[language].enduranceTitle;
+        document.getElementById('endurance-description').innerText = translations[language].enduranceDesc;
+        document.getElementById('endurance-minutes').previousElementSibling.innerText = translations[language].minutesLabel;
+        document.getElementById('endurance-seconds').previousElementSibling.innerText = translations[language].secondsLabel;
+
+        // Update button texts
+        document.getElementById('start-button').innerText = translations[language].startButton;
+        document.getElementById('pause-button').innerText = translations[language].pauseButton;
+        document.getElementById('cancel-button').innerText = translations[language].cancelButton;
+
+        // Update progress text when changing language
+        updateProgressText();
     }
+
+    function startTraining() {
+        const language = document.getElementById('language-select').value; // Get selected language
+        totalTime = document.getElementById('endurance-time').value; // Get total time from input
+        timeLeft = totalTime; // Initialize time left
+        const progressBar = document.getElementById('endurance-progress');
+        const progressText = document.getElementById('endurance-progress-text');
+
+        // Set progress bar maximum based on total time
+        progressBar.max = totalTime;
+        progressBar.value = totalTime;
+
+        // Enable the buttons
+        document.getElementById('pause-button').disabled = false; // Enable pause button
+        document.getElementById('cancel-button').disabled = false; // Enable cancel button
+
+        // Start the interval for training
+        interval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                progressBar.value = timeLeft;
+                updateProgressText(); // Update progress
+            } else {
+                clearInterval(interval);
+                alert(translations[language].trainingComplete);
+                resetTraining(); // Reset training
+            }
+        }, 1000);
+    }
+
+    function pauseTraining() {
+        if (isPaused) {
+            // Resume training
+            isPaused = false;
+            document.getElementById('pause-button').innerText = "Pause"; // Update button text
+            document.getElementById('cancel-button').disabled = false; // Enable cancel button
+            startTraining(); // Call startTraining again to resume
+        } else {
+            // Pause training
+            clearInterval(interval);
+            isPaused = true;
+            document.getElementById('pause-button').innerText = "Resume"; // Update button text
+            document.getElementById('cancel-button').disabled = false; // Enable cancel button
+        }
+    }
+
+    function cancelTraining() {
+        clearInterval(interval);
+        alert(translations[document.getElementById('language-select').value].trainingCanceled);
+        resetTraining(); // Reset training
+    }
+
+    function resetTraining() {
+        timeLeft = totalTime; // Reset time left to total time
+        document.getElementById('endurance-progress').value = totalTime; // Reset progress bar
+        document.getElementById('endurance-minutes').value = 0; // Reset minutes
+        document.getElementById('endurance-seconds').value = 60; // Reset seconds
+        updateProgressText(); // Update progress text
+        document.getElementById('pause-button').disabled = true; // Disable pause button
+        document.getElementById('cancel-button').disabled = true; // Disable cancel button
+        isPaused = false; // Reset pause status
+    }
+
+    function updateProgressText() {
+        const progressText = document.getElementById('endurance-progress-text');
+        progressText.innerText = `Time Left: ${timeLeft}s`; // Update the text to show time left
+    }
+
+    // Load the selected language on page load
+    window.onload = () => {
+        const savedLanguage = localStorage.getItem('language') || 'en'; // Default to English
+        document.getElementById('language-select').value = savedLanguage; // Set the selected language
+        changeLanguage(); // Call changeLanguage to update the text
+    };
 </script>
 
 </body>

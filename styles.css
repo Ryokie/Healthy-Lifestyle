@@ -25,10 +25,13 @@ header p {
 }
 
 nav {
-    text-align: center;
-    background: #444;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Mengatur posisi sticky */
+    top: 0; /* Jarak dari bagian atas saat sticky */
+    background: #444; /* Warna latar belakang untuk navigasi */
+    padding: 10px; /* Padding dalam navigasi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan */
+    z-index: 1000; /* Memastikan navigasi di atas elemen lain */
+    text-align: center; /* Mengatur teks di tengah */
 }
 
 nav a {
@@ -46,7 +49,7 @@ nav a:hover {
 }
 
 .container {
-    padding: 30px;
+    padding: 30px; /* Padding biasa untuk konten */
     max-width: 1100px;
     margin: auto;
 }
@@ -75,7 +78,6 @@ ul li:hover {
     background: #dcedc8;
     transform: translateX(5px);
 }
-
 
 .button {
     display: inline-block;
@@ -207,4 +209,124 @@ ul li:hover {
 
 #language-selector select:hover {
     border-color: #4CAF50; /* Change border color on hover */
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #4caf50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+header select {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.container {
+    padding: 20px;
+}
+
+h2 {
+    color: #4caf50;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+/* Progress Container */
+.progress-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.progress-container div {
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+/* Styling progress bars */
+progress {
+    width: 100%;
+    height: 25px;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 12px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4caf50; /* Color of the progress bar */
+    border-radius: 12px;
+    transition: width 0.3s ease-in-out; /* Smooth transition */
+}
+
+progress::-moz-progress-bar {
+    background-color: #4caf50; /* Color for Firefox */
+    border-radius: 12px;
+    transition: width 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Text Styles */
+h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #45a049;
 }
