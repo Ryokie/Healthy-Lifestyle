@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Sehat - Healthy Lifestyle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1 id="title">Protein Sehat</h1>
+    <p id="description">Informasi mengenai manfaat dan sumber protein sehat untuk tubuh.</p>
+    
+    <div>
+        <label for="language-select">Pilih Bahasa:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="buah-sayur.html" id="nav1">Buah dan Sayuran</a>
+    <a href="karbo.html" id="nav2">Karbohidrat Kompleks</a>
+</nav>
+
+<div class="container">
+    <h2 id="importance-title">Kenapa Protein Penting?</h2>
+    <p id="importance-description">Protein adalah salah satu makronutrien esensial yang diperlukan tubuh untuk membangun dan memperbaiki jaringan, memproduksi enzim, serta mendukung sistem kekebalan tubuh.</p>
+
+    <h2 id="benefits-title">Manfaat Konsumsi Protein Sehat</h2>
+    <ul id="benefits-list">
+        <li><b>Mendukung Pertumbuhan Otot:</b> Protein membantu dalam pembentukan otot dan perbaikan jaringan tubuh.</li>
+        <li><b>Meningkatkan Metabolisme:</b> Konsumsi protein dapat meningkatkan metabolisme dan membantu penurunan berat badan.</li>
+        <li><b>Menjaga Kesehatan Kulit, Rambut, dan Kuku:</b> Protein penting untuk kesehatan jaringan tubuh termasuk kulit, rambut, dan kuku.</li>
+        <li><b>Mendukung Fungsi Sistem Kekebalan:</b> Protein membantu dalam pembentukan antibodi yang melindungi tubuh dari penyakit.</li>
+    </ul>
+
+    <h2 id="sources-title">Sumber Protein Sehat</h2>
+    <ul id="sources-list">
+        <li><b>Ikan:</b> Salmon, tuna, dan sarden yang kaya akan omega-3.</li>
+        <li><b>Daging Tanpa Lemak:</b> Ayam tanpa kulit dan daging sapi tanpa lemak.</li>
+        <li><b>Kacang-kacangan:</b> Almond, kacang tanah, dan lentil.</li>
+        <li><b>Sumber Nabati:</b> Tahu, tempe, dan edamame.</li>
+    </ul>
+
+    <h2 id="tips-title">Tips Mengonsumsi Protein dengan Seimbang</h2>
+    <p id="tips-description">Cobalah untuk menyeimbangkan asupan protein dari berbagai sumber, baik hewani maupun nabati. Hindari konsumsi daging merah berlebihan dan pilih opsi yang lebih rendah lemak.</p>
+</div>
+
+<script>
+    const translations = {
+        en: {
+            nav1 : "Fruits and Vegetables",
+            nav2 : "Complex Carbohydrates",
+            title: "Healthy Protein",
+            description: "Information about the benefits and sources of healthy protein for the body.",
+            importanceTitle: "Why Protein is Important?",
+            importanceDescription: "Protein is one of the essential macronutrients required by the body to build and repair tissues, produce enzymes, and support the immune system.",
+            benefitsTitle: "Benefits of Healthy Protein Consumption",
+            benefitsList: [
+                "<b>Supports Muscle Growth:</b> Protein helps in muscle formation and tissue repair.",
+                "<b>Boosts Metabolism:</b> Protein consumption can increase metabolism and aid in weight loss.",
+                "<b>Maintains Healthy Skin, Hair, and Nails:</b> Protein is vital for the health of body tissues including skin, hair, and nails.",
+                "<b>Supports Immune System Function:</b> Protein aids in the formation of antibodies that protect the body from disease."
+            ],
+            sourcesTitle: "Sources of Healthy Protein",
+            sourcesList: [
+                "<b>Fish:</b> Salmon, tuna, and sardines rich in omega-3.",
+                "<b>Lean Meat:</b> Skinless chicken and lean beef.",
+                "<b>Nuts:</b> Almonds, peanuts, and lentils.",
+                "<b>Plant Sources:</b> Tofu, tempeh, and edamame."
+            ],
+            tipsTitle: "Tips for Consuming Protein Balanced",
+            tipsDescription: "Try to balance protein intake from various sources, both animal and plant-based. Avoid excessive red meat consumption and choose lower-fat options."
+        },
+        id: {
+            nav1 : "Buah dan Sayuran",
+            nav2 : "Karbohidrat Kompleks",
+            title: "Protein Sehat",
+            description: "Informasi mengenai manfaat dan sumber protein sehat untuk tubuh.",
+            importanceTitle: "Kenapa Protein Penting?",
+            importanceDescription: "Protein adalah salah satu makronutrien esensial yang diperlukan tubuh untuk membangun dan memperbaiki jaringan, memproduksi enzim, serta mendukung sistem kekebalan tubuh.",
+            benefitsTitle: "Manfaat Konsumsi Protein Sehat",
+            benefitsList: [
+                "<b>Mendukung Pertumbuhan Otot:</b> Protein membantu dalam pembentukan otot dan perbaikan jaringan tubuh.",
+                "<b>Meningkatkan Metabolisme:</b> Konsumsi protein dapat meningkatkan metabolisme dan membantu penurunan berat badan.",
+                "<b>Menjaga Kesehatan Kulit, Rambut, dan Kuku:</b> Protein penting untuk kesehatan jaringan tubuh termasuk kulit, rambut, dan kuku.",
+                "<b>Mendukung Fungsi Sistem Kekebalan:</b> Protein membantu dalam pembentukan antibodi yang melindungi tubuh dari penyakit."
+            ],
+            sourcesTitle: "Sumber Protein Sehat",
+            sourcesList: [
+                "<b>Ikan:</b> Salmon, tuna, dan sarden yang kaya akan omega-3.",
+                "<b>Daging Tanpa Lemak:</b> Ayam tanpa kulit dan daging sapi tanpa lemak.",
+                "<b>Kacang-kacangan:</b> Almond, kacang tanah, dan lentil.",
+                "<b>Sumber Nabati:</b> Tahu, tempe, dan edamame."
+            ],
+            tipsTitle: "Tips Mengonsumsi Protein dengan Seimbang",
+            tipsDescription: "Cobalah untuk menyeimbangkan asupan protein dari berbagai sumber, baik hewani maupun nabati. Hindari konsumsi daging merah berlebihan dan pilih opsi yang lebih rendah lemak."
+        }
+    };
+
+    function changeLanguage() {
+        const language = document.getElementById('language-select').value;
+        document.getElementById('title').innerText = translations[language].title;
+        document.getElementById('description').innerText = translations[language].description;
+
+        // Importance Section
+        document.getElementById('importance-title').innerText = translations[language].importanceTitle;
+        document.getElementById('importance-description').innerText = translations[language].importanceDescription;
+
+        // Benefits Section
+        document.getElementById('benefits-title').innerText = translations[language].benefitsTitle;
+        const benefitsList = document.getElementById('benefits-list');
+        benefitsList.innerHTML = '';
+        translations[language].benefitsList.forEach(benefit => {
+            const li = document.createElement('li');
+            li.innerHTML = benefit;  // Use innerHTML to include HTML tags like <b>
+            benefitsList.appendChild(li);
+        });
+
+        // Sources Section
+        document.getElementById('sources-title').innerText = translations[language].sourcesTitle;
+        const sourcesList = document.getElementById('sources-list');
+        sourcesList.innerHTML = '';
+        translations[language].sourcesList.forEach(source => {
+            const li = document.createElement('li');
+            li.innerHTML = source;  // Use innerHTML to include HTML tags like <b>
+            sourcesList.appendChild(li);
+        });
+
+        // Tips Section
+        document.getElementById('tips-title').innerText = translations[language].tipsTitle;
+        document.getElementById('tips-description').innerText = translations[language].tipsDescription;
+    }
+</script>
+
+</body>
+</html>
