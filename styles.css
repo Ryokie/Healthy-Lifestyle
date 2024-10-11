@@ -330,3 +330,140 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+#title-jogging1 {
+    background-image: url('assets/Jogging.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Styling untuk h3 Jogging */
+#title-jogging {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Styling untuk paragraf Jogging */
+#jogging-description {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+#title-weight1{
+    background-image: url('assets/beban.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-weight {
+    /* color: white; */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Styling untuk paragraf Jogging */
+#weight-description {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#title-yoga1{
+    background-image: url('assets/yoga.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-yoga {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Styling untuk paragraf Jogging */
+#yoga-description {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#title-swimming1{
+    background-image: url('assets/renang.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-swimming {
+    
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Styling untuk paragraf Jogging */
+#swimming-description {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#title-fruits1{
+    background-image: url('assets/Buahsayur.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-protein1{
+    background-image: url('assets/protein.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-carbs1{
+    background-image: url('assets/karbo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title-fruits{
+    color: white;
+}
+
+#title-protein{
+    color: white;
+}
+
+#title-carbs{
+    color: white;
+}

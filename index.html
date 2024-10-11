@@ -20,6 +20,11 @@
             <option value="id">Indonesian</option>
         </select>
     </div>
+
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+    </div>
 </header>
 
 <nav>
@@ -36,28 +41,28 @@
         <h2 id="sports-title">Sports</h2>
         <div class="slideshow-container" id="sports-slideshow">
             <div class="mySlides sportsSlides fade">
-                <div class="card">
+                <div class="card" id="title-yoga1">
                     <h3 id="title-yoga">Yoga</h3>
                     <p id="yoga-description">Yoga helps in improving flexibility, strength, and mind-body connection.</p>
                     <a id="learn-more-yoga" href="yoga.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
             <div class="mySlides sportsSlides fade">
-                <div class="card">
+                <div class="card" id="title-jogging1" >
                     <h3 id="title-jogging">Jogging</h3>
                     <p id="jogging-description">Jogging is a great cardiovascular exercise that helps in burning calories.</p>
                     <a id="learn-more-jogging" href="jogging.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
             <div class="mySlides sportsSlides fade">
-                <div class="card">
+                <div class="card" id="title-weight1">
                     <h3 id="title-weight">Weight Training</h3>
                     <p id="weight-description">Strength training helps build muscle mass and improve overall fitness.</p>
                     <a id="learn-more-weight" href="weight.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
             <div class="mySlides sportsSlides fade">
-                <div class="card">
+                <div class="card" id="title-swimming1">
                     <h3 id="title-swimming">Swimming</h3>
                     <p id="swimming-description">Swimming improves fitness, builds strength, enhances flexibility, reduces stress, and supports weight loss.</p>
                     <a id="learn-more-swimming" href="swimming.html" class="learn-more-button">Learn More</a>
@@ -79,21 +84,21 @@
         <h2 id="healthy-food-title">Healthy Food</h2>
         <div class="slideshow-container" id="healthy-food-slideshow">
             <div class="mySlides foodSlides fade" style="display: block;">
-                <div class="card">
+                <div class="card" id="title-fruits1">
                     <h3 id="title-fruits">Fruits and Vegetables</h3>
                     <p id="fruits-description">Eating fruits and vegetables improves overall health.</p>
                     <a id="learn-more-fruits" href="buah-sayur.html" class="learn-more-button">Learn More</a>   
                 </div>
             </div>
             <div class="mySlides foodSlides fade">
-                <div class="card">
+                <div class="card" id="title-protein1">
                     <h3 id="title-protein">Healthy Protein</h3>
                     <p id="protein-description">Proteins like fish and legumes are essential for growth and repair.</p>
                     <a id="learn-more-protein" href="protein.html" class="learn-more-button">Learn More</a>
                 </div>
             </div>
             <div class="mySlides foodSlides fade">
-                <div class="card">
+                <div class="card" id="title-carbs1">
                     <h3 id="title-carbs">Complex Carbohydrates</h3>
                     <p id="carbs-description">Complex carbs like oats and quinoa provide sustained energy.</p>
                     <a id="learn-more-carbs" href="karbo.html" class="learn-more-button">Learn More</a>
@@ -313,6 +318,54 @@ function calculateCalories() {
     // Result display
     document.getElementById("calories-result").innerText = 
         `${translations[document.getElementById("language").value].resultText} ${dailyCaloricNeed.toFixed(2)} calories per day.`;
+}
+
+function performSearch() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+
+    // Redirect logic
+    if (searchQuery.includes('yoga')) {
+        window.location.href = 'yoga.html';
+    } else if (searchQuery.includes('jogging')) {
+        window.location.href = 'jogging.html';
+    } else if (searchQuery.includes('swimming')) {
+        window.location.href = 'swimming.html';
+    } else if (searchQuery.includes('renang')) {
+        window.location.href = 'swimming.html';
+    } else if (searchQuery.includes('weight training')) {
+        window.location.href = 'weight.html';
+    } else if (searchQuery.includes('angkat beban')) {
+        window.location.href = 'weight.html';
+    } else if (searchQuery.includes('food')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('buah')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('sayur')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('fruits')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('vegetables')) {
+        window.location.href = 'buah-sayur.html';
+    }else if (searchQuery.includes('karbohidrat')) {
+        window.location.href = 'karbo.html';
+    }else if (searchQuery.includes('carbohydrates')) {
+        window.location.href = 'karbo.html';
+    }else if (searchQuery.includes('protein')) {
+        window.location.href = 'protein.html';
+    }  
+    
+    else {
+        alert('No matches found. Please try a different search.');
+    }
+}
+
+function changeLanguage() {
+    const selectedLanguage = document.getElementById('language').value;
+    if (selectedLanguage === 'en') {
+        alert('Switching to English...');
+    } else if (selectedLanguage === 'id') {
+        alert('Switching to Indonesian...');
+    }
 }
 </script>
 
