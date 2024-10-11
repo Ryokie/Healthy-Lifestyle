@@ -20,6 +20,10 @@
             <option value="en">English</option>
         </select>
     </div>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+    </div>
 </header>
 
 <nav>
@@ -238,6 +242,53 @@
         progressElement.value = newValue;
         progressTextElement.innerText = `Progress ${document.getElementById(`${part}-title`).innerText}: ${newValue}%`;
     }
+    function performSearch() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+
+    // Redirect logic
+    if (searchQuery.includes('yoga')) {
+        window.location.href = 'yoga.html';
+    } else if (searchQuery.includes('jogging')) {
+        window.location.href = 'jogging.html';
+    } else if (searchQuery.includes('swimming')) {
+        window.location.href = 'swimming.html';
+    } else if (searchQuery.includes('renang')) {
+        window.location.href = 'swimming.html';
+    } else if (searchQuery.includes('weight training')) {
+        window.location.href = 'weight.html';
+    } else if (searchQuery.includes('angkat beban')) {
+        window.location.href = 'weight.html';
+    } else if (searchQuery.includes('food')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('buah')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('sayur')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('fruits')) {
+        window.location.href = 'buah-sayur.html';
+    } else if (searchQuery.includes('vegetables')) {
+        window.location.href = 'buah-sayur.html';
+    }else if (searchQuery.includes('karbohidrat')) {
+        window.location.href = 'karbo.html';
+    }else if (searchQuery.includes('carbohydrates')) {
+        window.location.href = 'karbo.html';
+    }else if (searchQuery.includes('protein')) {
+        window.location.href = 'protein.html';
+    }  
+    
+    else {
+        alert('No matches found. Please try a different search.');
+    }
+}
+
+function changeLanguage() {
+    const selectedLanguage = document.getElementById('language').value;
+    if (selectedLanguage === 'en') {
+        alert('Switching to English...');
+    } else if (selectedLanguage === 'id') {
+        alert('Switching to Indonesian...');
+    }
+}
 </script>
 
 </body>
