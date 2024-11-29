@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buat Artikel</title>
+  <style>
+    /* General styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      background-color: #fff;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      width: 20%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .sidebar ul li span {
+      margin-right: 10px;
+    }
+
+    /* Content area styling */
+    .content {
+      width: 80%;
+      padding: 40px;
+      box-sizing: border-box;
+      background-color: #E8F5E9;
+    }
+
+    .content h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      background-color: #4CAF50;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    form textarea {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    form button {
+      display: block;
+      margin: 0 auto;
+      background-color: white;
+      color: #4CAF50;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>HEALTH</h2>
+    <ul>
+      <li><span>👤</span> User</li>
+      <li><span>📄</span> Artikel</li>
+      <li><span>🍎</span> MPP</li>
+    </ul>
+  </div>
+  <div class="content">
+    <h3>Buat Artikel</h3>
+    <form>
+      <label for="judul">Judul Artikel:</label>
+      <textarea id="judul" name="judul" rows="1"></textarea>
+
+      <label for="deskripsi">Deskripsi:</label>
+      <textarea id="deskripsi" name="deskripsi" rows="3"></textarea>
+
+      <label for="url">URL:</label>
+      <textarea id="url" name="url" rows="1"></textarea>
+
+      <button type="submit">Selesai</button>
+    </form>
+  </div>
+</body>
+</html>

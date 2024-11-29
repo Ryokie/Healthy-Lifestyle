@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Artikel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #4CAF50;
+      width: 250px;
+      padding: 20px 10px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar h1 {
+      font-size: 24px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li i {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    .edit-container {
+      background-color: #4CAF50;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .edit-container h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-button {
+      background-color: white;
+      color: #4CAF50;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .submit-button:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h1>HEALTH</h1>
+    <ul>
+      <li><a href="user.html"><i>👤</i> User</a></li>
+      <li><a href="artikel.html"><i>📄</i> Artikel</a></li>
+      <li><a href="#"><i>🍎</i> MPP</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="edit-container">
+      <h2>Edit Artikel</h2>
+      <form>
+        <div class="form-group">
+          <label for="judul">Judul Artikel:</label>
+          <input type="text" id="judul" value="From Chaos to Balance, Tips Gaya Hidup Sehat ala GEN Z yang Anti Ribet">
+        </div>
+        <div class="form-group">
+          <label for="deskripsi">Deskripsi:</label>
+          <textarea id="deskripsi">Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</textarea>
+        </div>
+        <div class="form-group">
+          <label for="url">URL:</label>
+          <input type="text" id="url" value="https://www.kompasiana.com/allisarafanayaa/674264f2ed641504877046a2/from-chaos-to-balance-tips-gaya-hidup-sehat-ala-gen-z-yang-anti-ribet">
+        </div>
+        <button type="submit" class="submit-button">Selesai</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

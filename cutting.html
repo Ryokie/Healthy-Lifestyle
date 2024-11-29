@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutting Meal Plans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styling that is similar to Bulking page */
+        body {
+            background-color: #2a2a2a;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            text-align: center;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .menu-button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .toggle-buttons .btn {
+            background-color: #6ABF4B;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .btn.active {
+            background-color: #4CAF50;
+        }
+
+        .meal-card {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .meal-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .meal-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .meal-card .info {
+            margin: 10px 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .meal-card button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: bold;
+        }
+
+        .meal-card button:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Meal Prep Planner (Cutting)</h1>
+        <!-- Menu Button (Home) -->
+        <a href="index.html">
+            <button class="menu-button" aria-label="Buat Menu">Home</button>
+        </a>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+        <!-- Tombol Bulking -->
+        <button class="btn" onclick="navigateTo('bulking.html')">Bulking</button>
+        <!-- Tombol Cutting (aktif) -->
+        <button class="btn active" onclick="navigateTo('cutting.html')">Cutting</button>
+    </div>
+
+    <!-- Cards Section (Cutting Meals) -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-3 meal-card">
+                <img src="https://via.placeholder.com/300" alt="Salad">
+                <h4>Salad</h4>
+                <div class="info">
+                    <p>⏱ 10 Min</p>
+                    <ul>
+                        <li>220 Kcal</li>
+                        <li>12 gram lemak</li>
+                        <li>18 gram karbohidrat</li>
+                        <li>8 gram protein</li>
+                    </ul>
+                </div>
+                <button>Tutorial</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-3 meal-card">
+                <img src="https://via.placeholder.com/300" alt="Grilled Chicken">
+                <h4>Grilled Chicken</h4>
+                <div class="info">
+                    <p>⏱ 30 Min</p>
+                    <ul>
+                        <li>350 Kcal</li>
+                        <li>18 gram lemak</li>
+                        <li>0 gram karbohidrat</li>
+                        <li>40 gram protein</li>
+                    </ul>
+                </div>
+                <button>Tutorial</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-3 meal-card">
+                <img src="https://via.placeholder.com/300" alt="Egg Whites">
+                <h4>Egg Whites</h4>
+                <div class="info">
+                    <p>⏱ 5 Min</p>
+                    <ul>
+                        <li>120 Kcal</li>
+                        <li>5 gram lemak</li>
+                        <li>1 gram karbohidrat</li>
+                        <li>25 gram protein</li>
+                    </ul>
+                </div>
+                <button>Tutorial</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page; // Fungsi ini untuk mengarahkan ke halaman yang diminta
+        }
+    </script>
+</body>
+</html>

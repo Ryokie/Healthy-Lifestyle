@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            background-color: #4CAF50;
+            color: white;
+            height: 100vh;
+            width: 20%;
+            float: left;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            margin-left: 20%;
+            padding: 20px;
+        }
+
+        .card-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: calc(50% - 20px); /* Set width to make two cards fit horizontally */
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 250px; /* Ensuring square size */
+            object-fit: cover; /* Cropping image for square shape */
+        }
+
+        .card h4 {
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>HEALTH</h2>
+        <a href="index.html">Home</a>
+        <a href="#">Artikel</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Tombol untuk menuju halaman tambah menu -->
+        <button class="btn mb-3" onclick="window.location.href='tambah_menu.html'">Buat Menu Baru</button>
+        
+        <!-- Card Section -->
+        <div class="card-section">
+            <!-- First Card -->
+            <div class="card">
+                <img src="https://via.placeholder.com/400" alt="Salad">
+                <h4>Salad</h4>
+                <p>⏱ 15 Min</p>
+                <ul>
+                    <li>404 Kkal</li>
+                    <li>19.1 gram lemak</li>
+                    <li>17.6 gram karbohidrat</li>
+                    <li>23.5 gram protein</li>
+                </ul>
+                <!-- Form Edit -->
+                <form id="editRecipeForm1">
+                    <div class="form-group">
+                        <label for="recipeName1">Nama Makanan:</label>
+                        <input type="text" id="recipeName1" class="form-control" value="Salad">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeTime1">Waktu (Menit):</label>
+                        <input type="number" id="recipeTime1" class="form-control" value="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="calories1">Kalori (Kkal):</label>
+                        <input type="number" id="calories1" class="form-control" value="404">
+                    </div>
+                    <div class="form-group">
+                        <label for="fat1">Lemak (gram):</label>
+                        <input type="number" id="fat1" class="form-control" value="19.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="carbs1">Karbohidrat (gram):</label>
+                        <input type="number" id="carbs1" class="form-control" value="17.6">
+                    </div>
+                    <div class="form-group">
+                        <label for="protein1">Protein (gram):</label>
+                        <input type="number" id="protein1" class="form-control" value="23.5">
+                    </div>
+                    <button type="submit" class="btn mt-3">Simpan</button>
+                </form>
+            </div>
+
+            <!-- Second Card -->
+            <div class="card">
+                <img src="https://via.placeholder.com/400" alt="Pasta">
+                <h4>Pasta</h4>
+                <p>⏱ 20 Min</p>
+                <ul>
+                    <li>532 Kkal</li>
+                    <li>21 gram lemak</li>
+                    <li>69 gram karbohidrat</li>
+                    <li>19 gram protein</li>
+                </ul>
+                <!-- Form Edit -->
+                <form id="editRecipeForm2">
+                    <div class="form-group">
+                        <label for="recipeName2">Nama Makanan:</label>
+                        <input type="text" id="recipeName2" class="form-control" value="Pasta">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeTime2">Waktu (Menit):</label>
+                        <input type="number" id="recipeTime2" class="form-control" value="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="calories2">Kalori (Kkal):</label>
+                        <input type="number" id="calories2" class="form-control" value="532">
+                    </div>
+                    <div class="form-group">
+                        <label for="fat2">Lemak (gram):</label>
+                        <input type="number" id="fat2" class="form-control" value="21">
+                    </div>
+                    <div class="form-group">
+                        <label for="carbs2">Karbohidrat (gram):</label>
+                        <input type="number" id="carbs2" class="form-control" value="69">
+                    </div>
+                    <div class="form-group">
+                        <label for="protein2">Protein (gram):</label>
+                        <input type="number" id="protein2" class="form-control" value="19">
+                    </div>
+                    <button type="submit" class="btn mt-3">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // First Form Submission Handling
+        document.getElementById('editRecipeForm1').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Resep Salad berhasil diperbarui!');
+        });
+
+        // Second Form Submission Handling
+        document.getElementById('editRecipeForm2').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Resep Pasta berhasil diperbarui!');
+        });
+    </script>
+</body>
+</html>
