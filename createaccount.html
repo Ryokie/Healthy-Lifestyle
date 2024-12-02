@@ -81,7 +81,7 @@
     <div class="header">
       Healthy Lifestyle
     </div>
-    <form>
+    <form onsubmit="redirectToLogin(event)">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="Enter your username">
@@ -93,5 +93,12 @@
       <button type="submit">Create</button>
     </form>
   </div>
+
+  <script>
+    function redirectToLogin(event) {
+      event.preventDefault(); // Mencegah pengiriman form default
+      window.location.href = "loginpage.html"; // Mengarahkan ke loginpage.html
+    }
+  </script>
 </body>
 </html>

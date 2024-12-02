@@ -82,15 +82,16 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>HEALTH</h2>
-        <a href="index.html">Home</a>
-        <a href="#">Artikel</a>
+        <a href="users.html">User</a>
+        <a href="artikel.html">Artikel</a>
+        <a href="recipes.html">MPP</a>
     </div>
 
     <!-- Content -->
     <div class="content">
         <div class="form-container">
             <h2>Tambah Menu</h2>
-            <form>
+            <form onsubmit="event.preventDefault(); window.location.href='recipes.html';">
                 <div class="form-group">
                     <label for="namaMakanan">Nama Makanan:</label>
                     <input type="text" id="namaMakanan" class="form-control" placeholder="Masukkan nama makanan">

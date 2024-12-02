@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Prep Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            background-color: #4a7b3f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .tutorial-button {
+            background-color: white;
+            color: #4a7b3f;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .tutorial-button:hover {
+            background-color: #e5e5e5;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .meal-card {
+            background-color: #4a7b3f;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meal-image {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .meal-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .meal-details {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .meal-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .prep-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .prep-time span {
+            display: inline-block;
+            background-color: white;
+            color: #4a7b3f;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ingredients, .tutorial {
+            flex: 1;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- Back button to bulking.html -->
+        <a href="cutting.html" class="back-button">&#8592; Back</a>
+        Meal Prep Planner
+        <div>
+            <button class="tutorial-button">Tutorial</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="meal-card">
+            <div class="meal-image">
+                <img src="https://via.placeholder.com/300x200" alt="Salad Image">
+            </div>
+            <div class="meal-details">
+                <div class="meal-title">Salad</div>
+                <div class="prep-time">
+                    <span>&#9200;</span> 15 Min
+                </div>
+                <div class="ingredients">
+                    <div class="section-title">Bahan:</div>
+                    <ul>
+                        <li>50 Gram Daging Ayam Rebus</li>
+                        <li>100 Gram Mentimun</li>
+                        <li>10 Buah Tomat Ceri</li>
+                        <li>1 Buah Bawang Bombay</li>
+                        <li>100 Gram Selada</li>
+                        <li>100 Gram Saus Salad</li>
+                    </ul>
+                </div>
+                <div class="tutorial">
+                    <div class="section-title">Tutorial:</div>
+                    <ul>
+                        <li>Tambahkan air perasan lemon ke dalam saus dan aduk hingga rata.</li>
+                        <li>Sisihkan saus yang sudah jadi dan sajikan sayuran serta ayam suwir yang telah disiapkan sebelumnya.</li>
+                        <li>Siramkan saus di atasnya, dan salad sayur ayam suwir siap untuk dinikmati.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
