@@ -1,73 +1,213 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoose = require('mongoose');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const multer = require("multer");
+const cors = require("cors");
+const bcrypt = require("bcryptjs");
+const fs = require("fs");
+const path = require("path");
 
-// Inisialisasi aplikasi
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Koneksi ke MongoDB
-const mongoURL = 'mongodb://localhost:27017/frontend'; // Database "frontend"
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Berhasil terhubung ke database frontend'))
-    .catch((err) => console.error('Gagal menghubungkan ke MongoDB:', err));
+// Buat folder 'assets' jika belum ada
+const assetsFolder = path.join(__dirname, "assets");
+if (!fs.existsSync(assetsFolder)) {
+    fs.mkdirSync(assetsFolder);
+    console.log("Folder 'assets' berhasil dibuat.");
+} else {
+    console.log("Folder 'assets' sudah ada.");
+}
 
-// Definisi model Mongoose (schema data)
-const ItemSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    age: { type: Number, required: true },
+// Serve static files (images) from the 'assets' folder
+app.use('/assets', express.static('assets'));
+
+// MongoDB Connection
+mongoose.connect("mongodb://localhost:27017/frontend", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log("Terhubung ke MongoDB.");
+}).catch((err) => {
+    console.error("Gagal terhubung ke MongoDB:", err.message);
 });
 
-const Item = mongoose.model('Item', ItemSchema);
+// Menu Schema
+const menuSchema = new mongoose.Schema({
+    namaMakanan: { type: String, required: true },
+    lamaPembuatan: { type: Number, required: true },
+    kkal: { type: Number, required: true },
+    lemak: { type: Number, required: true },
+    karbohidrat: { type: Number, required: true },
+    protein: { type: Number, required: true },
+    gambar: { type: String },
+    bahanBahan: { type: String, required: true },
+    tahapPembuatan: { type: String, required: true },
+});
+const Menu = mongoose.model("Menu", menuSchema);
 
-// Endpoint CRUD
-// 1. Tambah data (Create)
-app.post('/api/items', async (req, res) => {
+// User Schema for `users` collection
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+const User = mongoose.model("User", userSchema);
+
+// User Schema for `users1` collection
+const user1Schema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+const User1 = mongoose.model("User1", user1Schema);
+
+// File Upload Configuration
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const folderPath = path.join(__dirname, "assets");
+        fs.access(folderPath, fs.constants.W_OK, (err) => {
+            if (err) {
+                console.error("Server tidak memiliki izin menulis di folder:", folderPath);
+                return cb(new Error("Izin menulis ke folder 'assets' ditolak"));
+            }
+            cb(null, folderPath);
+        });
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname);
+    },
+});
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png|gif/;
+        const mimetype = filetypes.test(file.mimetype);
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb(new Error("Only images are allowed!"));
+    },
+    limits: { fileSize: 2 * 1024 * 1024 },
+});
+
+// Routes
+
+// Add a new menu item
+app.post("/api/menu", upload.single("gambar"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "Gambar wajib diunggah." });
+    }
+    const newMenu = new Menu({
+        namaMakanan: req.body.namaMakanan,
+        lamaPembuatan: req.body.lamaPembuatan,
+        kkal: req.body.kkal,
+        lemak: req.body.lemak,
+        karbohidrat: req.body.karbohidrat,
+        protein: req.body.protein,
+        gambar: `assets/${req.file.filename}`,
+        bahanBahan: req.body.bahanBahan,
+        tahapPembuatan: req.body.tahapPembuatan,
+    });
+
+    newMenu
+        .save()
+        .then(() => res.status(201).json({ message: "Menu berhasil ditambahkan!" }))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+// Fetch all menu items
+app.get("/api/recipes", (req, res) => {
+    Menu.find()
+        .then((menus) => res.status(200).json(menus))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+// Registration for `users` collection
+app.post("/register/users", async (req, res) => {
     try {
-        const newItem = new Item(req.body); // Data dari frontend
-        const savedItem = await newItem.save(); // Simpan ke MongoDB
-        res.status(201).json(savedItem); // Kirim respon
-    } catch (err) {
-        res.status(400).json({ message: 'Gagal menyimpan data', error: err.message });
+        const { username, password } = req.body;
+
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(400).json({ message: "Username sudah terdaftar" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ username, password: hashedPassword });
+        await newUser.save();
+
+        res.status(201).json({ message: "User berhasil terdaftar di users!" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
-// 2. Ambil semua data (Read)
-app.get('/api/items', async (req, res) => {
+// Login for `users` collection
+app.post("/login/users", async (req, res) => {
     try {
-        const items = await Item.find(); // Ambil semua data dari koleksi
-        res.json(items);
-    } catch (err) {
-        res.status(500).json({ message: 'Gagal mengambil data', error: err.message });
+        const { username, password } = req.body;
+
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(400).json({ message: "Username atau password salah" });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: "Username atau password salah" });
+        }
+
+        res.status(200).json({ message: "Login berhasil di users!" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
-// 3. Perbarui data (Update)
-app.put('/api/items/:id', async (req, res) => {
+// Registration for `users1` collection
+app.post("/register/users1", async (req, res) => {
     try {
-        const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedItem) return res.status(404).json({ message: 'Item tidak ditemukan' });
-        res.json(updatedItem);
-    } catch (err) {
-        res.status(400).json({ message: 'Gagal memperbarui data', error: err.message });
+        const { username, password } = req.body;
+
+        const existingUser = await User1.findOne({ username });
+        if (existingUser) {
+            return res.status(400).json({ message: "Username sudah terdaftar" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User1({ username, password: hashedPassword });
+        await newUser.save();
+
+        res.status(201).json({ message: "User berhasil terdaftar di users1!" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
-// 4. Hapus data (Delete)
-app.delete('/api/items/:id', async (req, res) => {
+// Login for `users1` collection
+app.post("/login/users1", async (req, res) => {
     try {
-        const deletedItem = await Item.findByIdAndDelete(req.params.id);
-        if (!deletedItem) return res.status(404).json({ message: 'Item tidak ditemukan' });
-        res.sendStatus(204);
-    } catch (err) {
-        res.status(400).json({ message: 'Gagal menghapus data', error: err.message });
+        const { username, password } = req.body;
+
+        const user = await User1.findOne({ username });
+        if (!user) {
+            return res.status(400).json({ message: "Username atau password salah" });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: "Username atau password salah" });
+        }
+
+        res.status(200).json({ message: "Login berhasil di users1!" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
-// Jalankan server
-const PORT = 3000;
+// Start Server
+const PORT = 3001;
 app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
+    console.log(`Server berjalan pada http://localhost:${PORT}`);
 });
