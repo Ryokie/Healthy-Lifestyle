@@ -17,7 +17,7 @@
 
         /* Header Section */
         .header {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             padding: 20px 0;
             position: relative;
@@ -34,7 +34,7 @@
             top: 15px;
             left: 15px;
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 5px;
             padding: 5px 15px;
@@ -55,7 +55,7 @@
         }
 
         .toggle-buttons .btn {
-            background-color: #6ABF4B;
+            background-color: #598234;
             color: white;
             border: none;
             border-radius: 20px;
@@ -65,12 +65,12 @@
         }
 
         .btn.active {
-            background-color: #4CAF50;
+            background-color: #598234;
         }
 
         /* Meal Cards Styling */
         .meal-card {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             border-radius: 10px;
             padding: 15px;
@@ -99,7 +99,7 @@
 
         .meal-card button {
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 20px;
             padding: 5px 15px;
@@ -108,6 +108,50 @@
 
         .meal-card button:hover {
             background-color: #f1f1f1;
+        }
+
+        /* Make the layout responsive */
+        @media (max-width: 768px) {
+            .meal-card {
+                margin: 10px;
+            }
+
+            .meal-card img {
+                height: 130px; /* Adjust image height on smaller screens */
+            }
+
+            .toggle-buttons .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .menu-button {
+                font-size: 0.9rem;
+                padding: 5px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .meal-card img {
+                height: 120px; /* Further reduce image height for small screens */
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .meal-card h4 {
+                font-size: 1rem;
+            }
+
+            .meal-card .info {
+                font-size: 0.8rem;
+            }
+
+            .meal-card button {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
@@ -133,7 +177,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <!-- Card 1 -->
-            <div class="col-md-3 meal-card">
+            <div class="col-md-3 col-sm-6 meal-card">
                 <img src="https://via.placeholder.com/300" alt="Sandwich">
                 <h4>Sandwich</h4>
                 <div class="info">
@@ -149,7 +193,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="col-md-3 meal-card">
+            <div class="col-md-3 col-sm-6 meal-card">
                 <img src="https://via.placeholder.com/300" alt="Nasi Goreng">
                 <h4>Nasi Goreng</h4>
                 <div class="info">
@@ -165,7 +209,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="col-md-3 meal-card">
+            <div class="col-md-3 col-sm-6 meal-card">
                 <img src="https://via.placeholder.com/300" alt="Rendang">
                 <h4>Rendang</h4>
                 <div class="info">

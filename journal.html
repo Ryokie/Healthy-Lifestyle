@@ -13,7 +13,7 @@
         }
 
         .header {
-            background-color: #4a7b3f;
+            background-color: #598234;
             color: white;
             padding: 20px;
             text-align: center;
@@ -35,7 +35,7 @@
         }
 
         .journal-card {
-            background-color: #4a7b3f;
+            background-color: #598234;
             color: white;
             border-radius: 10px;
             padding: 20px;
@@ -55,7 +55,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #4a7b3f;
+            background-color: #598234;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -65,7 +65,7 @@
 
         .footer-button {
             color: white;
-            background-color: #4a7b3f;
+            background-color: #598234;
             border: none;
             border-radius: 20px;
             padding: 10px 20px;
@@ -75,13 +75,13 @@
         }
 
         .footer-button:hover {
-            background-color: #3c6533;
+            background-color: #598234;
         }
 
         .add-icon {
             font-size: 24px;
             background-color: white;
-            color: #4a7b3f;
+            color: #598234;
             border-radius: 50%;
             width: 36px;
             height: 36px;
@@ -90,6 +90,72 @@
             align-items: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .header {
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .journal-card {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            .journal-title {
+                font-size: 16px;
+            }
+
+            .footer-button {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+
+            .add-icon {
+                font-size: 22px;
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                font-size: 18px;
+                padding: 15px;
+            }
+
+            .journal-card {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .journal-title {
+                font-size: 14px;
+            }
+
+            .footer {
+                padding: 10px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-button {
+                font-size: 12px;
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+            }
+
+            .add-icon {
+                font-size: 20px;
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>

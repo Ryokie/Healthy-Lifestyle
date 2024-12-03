@@ -10,18 +10,20 @@
       margin: 0;
       padding: 0;
       display: flex;
+      flex-wrap: wrap; /* Membuat layout lebih fleksibel */
       height: 100vh;
     }
 
     /* Sidebar */
     .sidebar {
-      background-color: #4CAF50;
+      background-color: #598234;
       width: 250px;
       padding: 20px 10px;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
     .sidebar h1 {
@@ -61,6 +63,9 @@
       flex: 1;
       background-color: #f9f9f9;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .search-bar {
@@ -79,7 +84,7 @@
     }
 
     .search-bar button {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -89,7 +94,7 @@
     }
 
     .search-bar button:hover {
-      background-color: #45a049;
+      background-color: #598234;
     }
 
     /* User Card */
@@ -103,6 +108,7 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
 
     .user-card .content {
@@ -121,7 +127,7 @@
     }
 
     .user-card button {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       border: none;
       padding: 10px 15px;
@@ -131,7 +137,58 @@
     }
 
     .user-card button:hover {
-      background-color: #45a049;
+      background-color: #598234;
+    }
+
+    /* Media Queries for Smaller Devices */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .search-bar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .search-bar input, .search-bar button {
+        width: 100%;
+      }
+
+      .user-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .user-card button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+      }
+
+      .sidebar h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .user-card {
+        padding: 10px;
+      }
+
+      .user-card h2 {
+        font-size: 16px;
+      }
+
+      .user-card p {
+        font-size: 12px;
+      }
     }
   </style>
 </head>

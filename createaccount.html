@@ -26,7 +26,7 @@
     }
 
     .header {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       padding: 20px 0;
       font-size: 24px;
@@ -44,7 +44,7 @@
       margin-bottom: 8px;
       font-size: 16px;
       text-align: left;
-      color: #4CAF50;
+      color: #598234;
     }
 
     input[type="text"],
@@ -52,7 +52,7 @@
       width: 100%;
       padding: 10px;
       font-size: 14px;
-      border: 1px solid #4CAF50;
+      border: 1px solid #598234;
       border-radius: 4px;
       box-sizing: border-box;
       margin-bottom: 20px;
@@ -62,7 +62,7 @@
       display: block;
       width: 100%;
       padding: 10px;
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       font-size: 16px;
       border: none;
@@ -72,7 +72,33 @@
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #598234;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%; /* Adjust width for smaller devices */
+      }
+
+      .header {
+        font-size: 20px; /* Adjust header font size on smaller screens */
+      }
+
+      label {
+        font-size: 14px; /* Smaller font size for labels */
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        font-size: 12px; /* Adjust input text size */
+        padding: 8px; /* Smaller padding for input fields */
+      }
+
+      button {
+        font-size: 14px; /* Adjust button font size */
+        padding: 12px; /* Adjust padding for smaller devices */
+      }
     }
   </style>
 </head>
@@ -96,8 +122,8 @@
 
   <script>
     function redirectToLogin(event) {
-      event.preventDefault(); // Mencegah pengiriman form default
-      window.location.href = "loginpage.html"; // Mengarahkan ke loginpage.html
+      event.preventDefault(); // Prevent default form submission
+      window.location.href = "loginpage.html"; // Redirect to loginpage.html
     }
   </script>
 </body>

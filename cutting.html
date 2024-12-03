@@ -16,7 +16,7 @@
         }
 
         .header {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             padding: 20px 0;
             position: relative;
@@ -32,7 +32,7 @@
             top: 15px;
             left: 15px;
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 5px;
             padding: 5px 15px;
@@ -52,7 +52,7 @@
         }
 
         .toggle-buttons .btn {
-            background-color: #6ABF4B;
+            background-color: #598234;
             color: white;
             border: none;
             border-radius: 20px;
@@ -62,11 +62,11 @@
         }
 
         .btn.active {
-            background-color: #4CAF50;
+            background-color: #598234;
         }
 
         .meal-card {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             border-radius: 10px;
             padding: 15px;
@@ -95,7 +95,7 @@
 
         .meal-card button {
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 20px;
             padding: 5px 15px;
@@ -105,6 +105,40 @@
 
         .meal-card button:hover {
             background-color: #f1f1f1;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .meal-card {
+                margin: 10px; /* Reduce card margin on smaller screens */
+            }
+
+            .toggle-buttons .btn {
+                padding: 8px 16px; /* Adjust button size on smaller screens */
+            }
+
+            .header h1 {
+                font-size: 22px; /* Smaller header font size */
+            }
+
+            .meal-card h4 {
+                font-size: 1em; /* Smaller meal card title font size */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .meal-card {
+                width: 100%; /* Full width cards on very small screens */
+            }
+
+            .meal-card img {
+                height: 120px; /* Smaller image height on small screens */
+            }
+
+            .meal-card button {
+                padding: 8px 12px; /* Smaller button padding */
+                font-size: 14px; /* Smaller button font size */
+            }
         }
     </style>
 </head>

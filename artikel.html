@@ -10,18 +10,23 @@
       margin: 0;
       padding: 0;
       display: flex;
-      height: 100vh;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Sidebar */
     .sidebar {
-      background-color: #4CAF50;
+      background-color: #598234;
       width: 250px;
       padding: 20px 10px;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
     }
 
     .sidebar h1 {
@@ -38,13 +43,6 @@
 
     .sidebar ul li {
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-    }
-
-    .sidebar ul li i {
-      font-size: 20px;
-      margin-right: 10px;
     }
 
     .sidebar ul li a {
@@ -56,11 +54,12 @@
       gap: 10px;
     }
 
-    /* Main Content */
     .main-content {
       flex: 1;
       background-color: #f9f9f9;
       padding: 20px;
+      margin-left: 250px;
+      transition: margin-left 0.3s;
     }
 
     .button-container {
@@ -70,7 +69,7 @@
     }
 
     .button-container button {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -80,12 +79,12 @@
     }
 
     .button-container button:hover {
-      background-color: #45a049;
+      background-color: #598234;
     }
 
     /* Artikel Card */
     .article-card {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       border-radius: 10px;
       padding: 15px;
@@ -93,6 +92,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .article-card .content {
@@ -112,7 +112,7 @@
 
     .article-card button {
       background-color: white;
-      color: #4CAF50;
+      color: #598234;
       border: none;
       padding: 10px 15px;
       border-radius: 5px;
@@ -123,6 +123,65 @@
     .article-card button:hover {
       background-color: #e7e7e7;
     }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 10px;
+      }
+
+      .article-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .article-card h2 {
+        font-size: 16px;
+      }
+
+      .article-card p {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar ul li a {
+        font-size: 14px;
+      }
+
+      .button-container button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .article-card {
+        padding: 10px;
+      }
+
+      .article-card h2 {
+        font-size: 14px;
+      }
+
+      .article-card p {
+        font-size: 12px;
+      }
+
+      .article-card button {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -132,14 +191,14 @@
     <ul>
       <li><a href="users.html"><i>👤</i> User</a></li>
       <li><a href="artikel.html"><i>📄</i> Artikel</a></li>
-      <li><a href="recipes.html"><i>🍎</i> MPP</a></li>
+      <li><a href="#"><i>🍎</i> MPP</a></li>
     </ul>
   </div>
 
   <!-- Main Content Section -->
   <div class="main-content">
     <div class="button-container">
-      <button onclick="window.location.href='buat_artikel.html'">Buat Artikel Baru</button>
+      <button>Buat Artikel Baru</button>
     </div>
 
     <!-- Artikel Card -->
@@ -148,23 +207,23 @@
         <h2>From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</h2>
         <p>Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</p>
       </div>
-      <button onclick="window.location.href='edit_artikel.html'">Edit</button>
+      <button>Edit</button>
     </div>
 
     <div class="article-card">
       <div class="content">
-        <h2>From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</h2>
-        <p>Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</p>
+        <h2>Manfaat Olahraga Pagi untuk Kesehatan</h2>
+        <p>Olahraga pagi membantu menjaga tubuh tetap fit, mengurangi stres, dan meningkatkan fokus sepanjang hari.</p>
       </div>
-      <button onclick="window.location.href='edit_artikel.html'">Edit</button>
+      <button>Edit</button>
     </div>
 
     <div class="article-card">
       <div class="content">
-        <h2>From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</h2>
-        <p>Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</p>
+        <h2>Pentingnya Tidur Cukup</h2>
+        <p>Tidur yang cukup membantu memperbaiki sel-sel tubuh dan meningkatkan energi untuk aktivitas sehari-hari.</p>
       </div>
-      <button onclick="window.location.href='buat_artikel.html'">Edit</button>
+      <button>Edit</button>
     </div>
   </div>
 </body>

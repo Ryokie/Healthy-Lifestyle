@@ -17,7 +17,7 @@
 
         /* Header Section */
         .header {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             padding: 20px 0;
             position: relative;
@@ -34,7 +34,7 @@
             top: 15px;
             left: 15px;
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 5px;
             padding: 5px 15px;
@@ -55,7 +55,7 @@
         }
 
         .toggle-buttons .btn {
-            background-color: #6ABF4B;
+            background-color: #598234;
             color: white;
             border: none;
             border-radius: 20px;
@@ -65,12 +65,12 @@
         }
 
         .btn.active {
-            background-color: #4CAF50;
+            background-color: #598234;
         }
 
         /* Meal Cards Styling */
         .meal-card {
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             border-radius: 10px;
             padding: 15px;
@@ -99,7 +99,7 @@
 
         .meal-card button {
             background-color: white;
-            color: #4CAF50;
+            color: #598234;
             border: none;
             border-radius: 20px;
             padding: 5px 15px;
@@ -108,6 +108,59 @@
 
         .meal-card button:hover {
             background-color: #f1f1f1;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .meal-card {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            .meal-card img {
+                height: 200px;
+            }
+
+            .toggle-buttons .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .meal-card {
+                margin: 10px 0;
+            }
+
+            .meal-card img {
+                height: 180px;
+            }
+
+            .meal-card h4 {
+                font-size: 1rem;
+            }
+
+            .meal-card .info {
+                font-size: 0.8em;
+            }
+
+            .toggle-buttons .btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .menu-button {
+                font-size: 0.8rem;
+                padding: 5px 12px;
+            }
         }
     </style>
 </head>

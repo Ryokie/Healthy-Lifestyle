@@ -10,13 +10,14 @@
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
+      flex-wrap: wrap; /* Allow content to wrap on smaller screens */
       background-color: #fff;
     }
 
     /* Sidebar styling */
     .sidebar {
-      width: 20%;
-      background-color: #4CAF50;
+      width: 100%;
+      background-color: #598234;
       color: white;
       padding: 20px;
       box-sizing: border-box;
@@ -45,7 +46,7 @@
 
     /* Content area styling */
     .content {
-      width: 80%;
+      width: 100%;
       padding: 40px;
       box-sizing: border-box;
       background-color: #E8F5E9;
@@ -58,7 +59,7 @@
     }
 
     form {
-      background-color: #4CAF50;
+      background-color: #598234;
       padding: 20px;
       border-radius: 8px;
       color: white;
@@ -83,7 +84,7 @@
       display: block;
       margin: 0 auto;
       background-color: white;
-      color: #4CAF50;
+      color: #598234;
       border: none;
       border-radius: 20px;
       padding: 10px 20px;
@@ -92,8 +93,67 @@
     }
 
     form button:hover {
-      background-color: #45a049;
+      background-color: #598234;
       color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      /* Sidebar: make it full width */
+      .sidebar {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .content h3 {
+        font-size: 20px;
+      }
+
+      /* Form adjustments */
+      form label {
+        font-size: 14px;
+      }
+
+      form textarea {
+        font-size: 14px;
+      }
+
+      form button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* For small screens */
+      .sidebar h2 {
+        font-size: 20px;
+      }
+
+      .sidebar ul li {
+        font-size: 16px;
+      }
+
+      .content h3 {
+        font-size: 18px;
+      }
+
+      form label {
+        font-size: 12px;
+      }
+
+      form textarea {
+        font-size: 12px;
+      }
+
+      form button {
+        font-size: 12px;
+        padding: 8px 14px;
+      }
     }
   </style>
 </head>

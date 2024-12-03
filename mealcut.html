@@ -13,7 +13,7 @@
         }
 
         .header {
-            background-color: #4a7b3f;
+            background-color: #598234;
             color: white;
             padding: 20px;
             text-align: center;
@@ -32,7 +32,7 @@
 
         .tutorial-button {
             background-color: white;
-            color: #4a7b3f;
+            color: #598234;
             border: none;
             border-radius: 20px;
             padding: 5px 15px;
@@ -50,7 +50,7 @@
         }
 
         .meal-card {
-            background-color: #4a7b3f;
+            background-color: #598234;
             color: white;
             border-radius: 10px;
             padding: 20px;
@@ -93,7 +93,7 @@
         .prep-time span {
             display: inline-block;
             background-color: white;
-            color: #4a7b3f;
+            color: #598234;
             border-radius: 50%;
             width: 24px;
             height: 24px;
@@ -120,11 +120,70 @@
         li {
             margin-bottom: 5px;
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .meal-card {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .meal-image {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .meal-details {
+                flex: 1;
+                text-align: center;
+            }
+
+            .meal-title {
+                font-size: 18px;
+            }
+
+            .prep-time {
+                font-size: 12px;
+            }
+
+            .tutorial-button {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                font-size: 18px;
+                padding: 15px 0;
+            }
+
+            .meal-title {
+                font-size: 16px;
+            }
+
+            .prep-time {
+                font-size: 12px;
+            }
+
+            .tutorial-button {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+
+            ul {
+                padding-left: 15px;
+            }
+
+            li {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <!-- Back button to bulking.html -->
+        <!-- Back button to cutting.html -->
         <a href="cutting.html" class="back-button">&#8592; Back</a>
         Meal Prep Planner
         <div>

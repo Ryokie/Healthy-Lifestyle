@@ -10,11 +10,12 @@
       font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
+      flex-direction: row; /* Menjaga tata letak dengan sidebar di kiri dan konten di kanan */
     }
 
     /* Sidebar */
     .sidebar {
-      background-color: #4CAF50;
+      background-color: #598234;
       width: 250px;
       padding: 20px 10px;
       color: white;
@@ -60,10 +61,11 @@
       flex: 1;
       background-color: #f9f9f9;
       padding: 20px;
+      overflow-y: auto;
     }
 
     .edit-container {
-      background-color: #4CAF50;
+      background-color: #598234;
       color: white;
       padding: 30px;
       border-radius: 10px;
@@ -108,7 +110,7 @@
 
     .submit-button {
       background-color: white;
-      color: #4CAF50;
+      color: #598234;
       border: none;
       padding: 10px 20px;
       font-size: 16px;
@@ -120,6 +122,61 @@
 
     .submit-button:hover {
       background-color: #f1f1f1;
+    }
+
+    /* Media Queries untuk Responsif */
+    @media (max-width: 1024px) {
+      /* Untuk layar tablet dan lebih kecil */
+      .sidebar {
+        width: 200px; /* Lebar sidebar lebih kecil */
+      }
+
+      .edit-container {
+        padding: 20px;
+        margin: 10px;
+        max-width: 90%; /* Formulir mengisi sebagian besar layar */
+      }
+
+      .edit-container h2 {
+        font-size: 20px; /* Ukuran teks judul lebih kecil */
+      }
+
+      .form-group input, .form-group textarea {
+        font-size: 14px; /* Ukuran input sedikit lebih kecil */
+      }
+
+      .submit-button {
+        font-size: 14px; /* Ukuran tombol sedikit lebih kecil */
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Untuk layar ponsel */
+      .sidebar {
+        width: 100%; /* Sidebar menjadi full width */
+        text-align: center; /* Menyusun ulang konten sidebar */
+      }
+
+      .main-content {
+        padding: 10px;
+      }
+
+      .edit-container {
+        max-width: 100%; /* Formulir mengisi seluruh layar */
+        padding: 15px;
+      }
+
+      .edit-container h2 {
+        font-size: 18px; /* Ukuran teks judul lebih kecil lagi */
+      }
+
+      .form-group input, .form-group textarea {
+        font-size: 13px; /* Ukuran input lebih kecil untuk layar ponsel */
+      }
+
+      .submit-button {
+        font-size: 14px; /* Ukuran tombol lebih kecil */
+      }
     }
   </style>
 </head>

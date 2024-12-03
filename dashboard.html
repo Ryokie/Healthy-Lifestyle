@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
     <style>
-        /* Styling sederhana untuk tampilan login */
+        /* Styling dasar untuk halaman login */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -21,7 +21,8 @@
             padding: 20px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
+            width: 100%;
+            max-width: 400px; /* Maksimal lebar untuk container */
             text-align: center;
         }
 
@@ -50,7 +51,7 @@
 
         .login-container button {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #598234;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -61,7 +62,41 @@
         }
 
         .login-container button:hover {
-            background-color: #45a049;
+            background-color: #598234;
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 15px 20px; /* Mengurangi padding pada layar kecil */
+                max-width: 100%; /* Mengatur lebar container agar menyesuaikan layar */
+            }
+
+            .login-container h1 {
+                font-size: 20px; /* Mengurangi ukuran font judul pada layar kecil */
+            }
+
+            .login-container input {
+                font-size: 13px; /* Mengurangi ukuran font pada input untuk layar kecil */
+            }
+
+            .login-container button {
+                font-size: 14px; /* Mengurangi ukuran font tombol untuk layar kecil */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container h1 {
+                font-size: 18px; /* Mengurangi ukuran font judul lebih kecil untuk ponsel */
+            }
+
+            .login-container input {
+                font-size: 12px; /* Lebih kecil untuk input pada ponsel */
+            }
+
+            .login-container button {
+                font-size: 12px; /* Ukuran tombol lebih kecil di ponsel */
+            }
         }
     </style>
 </head>

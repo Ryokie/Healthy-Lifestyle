@@ -467,3 +467,146 @@ button:hover {
 #title-carbs{
     color: white;
 }
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+#search-container {
+    margin: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #0c0c0c;
+    padding: 10px 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+nav select {
+    margin-left: 15px;
+    padding: 5px;
+}
+
+/* Container for content */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* List styles */
+ul {
+    padding-left: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Header */
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    /* Navigation bar */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+
+    nav select {
+        margin: 10px 0;
+    }
+
+    /* Search input and button */
+    #search-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search-input {
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Content container */
+    .container {
+        padding: 10px;
+    }
+
+    /* Headings */
+    .container h2 {
+        font-size: 1.5rem;
+    }
+
+    /* List items */
+    ul {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header */
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    /* Navigation bar */
+    nav {
+        padding: 5px 0;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    /* Search input and button */
+    #search-input, button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Content container */
+    .container {
+        padding: 5px;
+    }
+
+    /* List items */
+    ul {
+        padding-left: 10px;
+    }
+}
