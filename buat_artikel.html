@@ -10,17 +10,18 @@
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
-      flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+      min-height: 100vh; /* Ensure the full height of the viewport is covered */
       background-color: #fff;
     }
 
     /* Sidebar styling */
     .sidebar {
-      width: 100%;
+      width: 250px;
       background-color: #598234;
       color: white;
       padding: 20px;
       box-sizing: border-box;
+      flex-shrink: 0; /* Prevent shrinking */
     }
 
     .sidebar h2 {
@@ -46,7 +47,7 @@
 
     /* Content area styling */
     .content {
-      width: 100%;
+      flex-grow: 1; /* Allow the content area to grow and fill the remaining space */
       padding: 40px;
       box-sizing: border-box;
       background-color: #E8F5E9;
@@ -99,7 +100,10 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      /* Sidebar: make it full width */
+      body {
+        flex-direction: column; /* Stack sidebar on top of content */
+      }
+
       .sidebar {
         width: 100%;
         padding: 10px;
@@ -129,7 +133,6 @@
     }
 
     @media (max-width: 480px) {
-      /* For small screens */
       .sidebar h2 {
         font-size: 20px;
       }
