@@ -167,7 +167,7 @@
     <div class="content" ng-controller="MenuController">
         <div class="form-container">
             <h2>Tambah Menu</h2>
-            <form ng-submit="submitForm()" enctype="multipart/form-data">
+            <form ng-submit="submitForm()">
                 <div class="form-group">
                     <label for="namaMakanan">Nama Makanan:</label>
                     <input type="text" id="namaMakanan" class="form-control" ng-model="menu.namaMakanan" placeholder="Masukkan nama makanan" required>
@@ -191,10 +191,6 @@
                 <div class="form-group">
                     <label for="protein">Gram Protein:</label>
                     <input type="number" id="protein" class="form-control" ng-model="menu.protein" placeholder="Masukkan jumlah protein" required>
-                </div>
-                <div class="form-group">
-                    <label for="gambar">Gambar:</label>
-                    <input type="file" id="gambar" class="form-control" file-model="menu.gambar" required>
                 </div>
                 <div class="form-group">
                     <label for="bahanBahan">Bahan-Bahan:</label>

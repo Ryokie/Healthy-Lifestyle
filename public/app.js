@@ -7,7 +7,7 @@ loginApp.controller("LoginController", function ($scope, $http) {
 
     // Login function
     $scope.login = function () {
-        $http.post("http://localhost:3001/login", $scope.user)
+        $http.post("http://localhost:3001/login/users", $scope.user)
             .then(function (response) {
                 $scope.message = response.data.message;
                 if (response.status === 200) {
@@ -23,7 +23,7 @@ loginApp.controller("LoginController", function ($scope, $http) {
 
     // Register function
     $scope.register = function () {
-        $http.post("http://localhost:3001/register", $scope.user)
+        $http.post("http://localhost:3001/register/users1", $scope.user)
             .then(function (response) {
                 $scope.message = response.data.message;
                 if (response.status === 201) {
@@ -41,42 +41,26 @@ loginApp.controller("LoginController", function ($scope, $http) {
 // Menu App
 var menuApp = angular.module("menuApp", []);
 
-// Directive for binding file input
-menuApp.directive("fileModel", function () {
-    return {
-        restrict: "A",
-        link: function (scope, element, attrs) {
-            element.bind("change", function () {
-                scope.$apply(function () {
-                    scope[attrs.fileModel] = element[0].files[0]; // Bind the file to scope
-                });
-            });
-        }
-    };
-});
-
 menuApp.controller("MenuController", function ($scope, $http) {
     $scope.menu = {};
     $scope.message = "";
 
     // Submit Form to add menu
     $scope.submitForm = function () {
-        const formData = new FormData();
-        formData.append("namaMakanan", $scope.menu.namaMakanan);
-        formData.append("lamaPembuatan", $scope.menu.lamaPembuatan);
-        formData.append("kkal", $scope.menu.kkal);
-        formData.append("lemak", $scope.menu.lemak);
-        formData.append("karbohidrat", $scope.menu.karbohidrat);
-        formData.append("protein", $scope.menu.protein);
-        formData.append("gambar", $scope.menu.gambar); // Attach the image file
-        formData.append("bahanBahan", $scope.menu.bahanBahan);
-        formData.append("tahapPembuatan", $scope.menu.tahapPembuatan);
+        // Create JSON object to send
+        const menuData = {
+            namaMakanan: $scope.menu.namaMakanan,
+            lamaPembuatan: $scope.menu.lamaPembuatan,
+            kkal: $scope.menu.kkal,
+            lemak: $scope.menu.lemak,
+            karbohidrat: $scope.menu.karbohidrat,
+            protein: $scope.menu.protein,
+            bahanBahan: $scope.menu.bahanBahan,
+            tahapPembuatan: $scope.menu.tahapPembuatan,
+        };
 
-        // Send the form data (including the image) to the server
-        $http.post("http://localhost:3001/api/menu", formData, {
-            headers: { "Content-Type": undefined }, // AngularJS will set the correct content-type automatically
-            transformRequest: angular.identity,
-        })
+        // Send the menu data as JSON to the server
+        $http.post("http://localhost:3001/api/menu", menuData)
             .then(function (response) {
                 $scope.message = response.data.message;
                 alert("Menu berhasil ditambahkan!");
@@ -128,15 +112,15 @@ recipeApp.controller("RecipeController", function ($scope, $http) {
     $scope.getRecipes();
 });
 
-var loginApp = angular.module("loginApp", []);
+var loginApp2 = angular.module("loginApp2", []);
 
-loginApp.controller("LoginController", function ($scope, $http) {
+loginApp2.controller("LoginController2", function ($scope, $http) {
     $scope.user = {};
     $scope.message = "";
 
     // Login function
     $scope.login = function () {
-        $http.post("http://localhost:3001/login", $scope.user)
+        $http.post("http://localhost:3001/login/users1", $scope.user)
             .then(function (response) {
                 alert(response.data.message);
                 if (response.status === 200) {
@@ -152,7 +136,7 @@ loginApp.controller("LoginController", function ($scope, $http) {
 
     // Register function
     $scope.register = function () {
-        $http.post("http://localhost:3001/register", $scope.user)
+        $http.post("http://localhost:3001/register/users1", $scope.user)
             .then(function (response) {
                 alert(response.data.message);
                 if (response.status === 201) {

@@ -42,10 +42,11 @@ const menuSchema = new mongoose.Schema({
     lemak: { type: Number, required: true },
     karbohidrat: { type: Number, required: true },
     protein: { type: Number, required: true },
-    gambar: { type: String },
+    gambar: { type: String }, // Ganti kosong dengan tipe data String
     bahanBahan: { type: String, required: true },
     tahapPembuatan: { type: String, required: true },
 });
+
 const Menu = mongoose.model("Menu", menuSchema);
 
 // User Schema for `users` collection
@@ -78,37 +79,23 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + "-" + file.originalname);
     },
 });
-const upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        const filetypes = /jpeg|jpg|png|gif/;
-        const mimetype = filetypes.test(file.mimetype);
-        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-        if (mimetype && extname) {
-            return cb(null, true);
-        }
-        cb(new Error("Only images are allowed!"));
-    },
-    limits: { fileSize: 2 * 1024 * 1024 },
-});
+const upload = (req, res, next) => {
+    next(); // Bypass multer since we no longer need file handling
+};
 
-// Routes
 
-// Add a new menu item
-app.post("/api/menu", upload.single("gambar"), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: "Gambar wajib diunggah." });
-    }
+app.post("/api/menu", (req, res) => {
+    const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan } = req.body;
+
     const newMenu = new Menu({
-        namaMakanan: req.body.namaMakanan,
-        lamaPembuatan: req.body.lamaPembuatan,
-        kkal: req.body.kkal,
-        lemak: req.body.lemak,
-        karbohidrat: req.body.karbohidrat,
-        protein: req.body.protein,
-        gambar: `assets/${req.file.filename}`,
-        bahanBahan: req.body.bahanBahan,
-        tahapPembuatan: req.body.tahapPembuatan,
+        namaMakanan,
+        lamaPembuatan,
+        kkal,
+        lemak,
+        karbohidrat,
+        protein,
+        bahanBahan,
+        tahapPembuatan,
     });
 
     newMenu
@@ -116,6 +103,9 @@ app.post("/api/menu", upload.single("gambar"), (req, res) => {
         .then(() => res.status(201).json({ message: "Menu berhasil ditambahkan!" }))
         .catch((err) => res.status(500).json({ error: err.message }));
 });
+
+
+
 
 // Fetch all menu items
 app.get("/api/recipes", (req, res) => {
@@ -179,7 +169,7 @@ app.post("/register/users1", async (req, res) => {
         const newUser = new User1({ username, password: hashedPassword });
         await newUser.save();
 
-        res.status(201).json({ message: "User berhasil terdaftar di users1!" });
+        res.status(201).json({ message: "User berhasil terdaftar" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -200,7 +190,7 @@ app.post("/login/users1", async (req, res) => {
             return res.status(400).json({ message: "Username atau password salah" });
         }
 
-        res.status(200).json({ message: "Login berhasil di users1!" });
+        res.status(200).json({ message: "Login berhasil" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
