@@ -34,6 +34,16 @@ mongoose.connect("mongodb://localhost:27017/frontend", {
     console.error("Gagal terhubung ke MongoDB:", err.message);
 });
 
+// Journal Schema
+const journalSchema = new mongoose.Schema({
+    nama: { type: String, required: true },
+    journal: { type: String, required: true },
+    tanggal: { type: Date, default: Date.now },
+});
+
+const Journal = mongoose.model('Journal', journalSchema);
+
+
 // Menu Schema
 const menuSchema = new mongoose.Schema({
     namaMakanan: { type: String, required: true },
@@ -82,6 +92,29 @@ const storage = multer.diskStorage({
 const upload = (req, res, next) => {
     next(); // Bypass multer since we no longer need file handling
 };
+
+// Tambah journal baru
+app.post('/api/journal', (req, res) => {
+    const { nama, journal } = req.body;
+
+    if (!nama || !journal) {
+        return res.status(400).json({ message: 'Nama dan journal harus diisi!' });
+    }
+
+    const newJournal = new Journal({ nama, journal });
+
+    newJournal.save()
+        .then(() => res.status(201).json({ message: 'Journal berhasil ditambahkan!' }))
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Ambil semua journal
+app.get('/api/journal', (req, res) => {
+    Journal.find()
+        .then(journals => res.status(200).json(journals))
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
 
 // Delete user berdasarkan username
 app.delete("/api/user1", (req, res) => {

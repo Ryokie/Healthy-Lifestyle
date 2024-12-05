@@ -39,6 +39,7 @@
             color: white;
             border-radius: 10px;
             padding: 20px;
+            margin-bottom: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             font-size: 14px;
             line-height: 1.6;
@@ -50,112 +51,31 @@
             margin-bottom: 10px;
         }
 
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container textarea {
             width: 100%;
-            background-color: #598234;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-button {
-            color: white;
-            background-color: #598234;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
+            margin-bottom: 10px;
+            padding: 10px;
             font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
-        .footer-button:hover {
+        .form-container button {
             background-color: #598234;
-        }
-
-        .add-icon {
-            font-size: 24px;
-            background-color: white;
-            color: #598234;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        /* Media Queries untuk Responsif */
-        @media (max-width: 768px) {
-            .header {
-                font-size: 20px;
-            }
-
-            .container {
-                padding: 10px;
-            }
-
-            .journal-card {
-                font-size: 16px;
-                padding: 15px;
-            }
-
-            .journal-title {
-                font-size: 16px;
-            }
-
-            .footer-button {
-                font-size: 12px;
-                padding: 8px 15px;
-            }
-
-            .add-icon {
-                font-size: 22px;
-                width: 32px;
-                height: 32px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                font-size: 18px;
-                padding: 15px;
-            }
-
-            .journal-card {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .journal-title {
-                font-size: 14px;
-            }
-
-            .footer {
-                padding: 10px;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-button {
-                font-size: 12px;
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 10px;
-            }
-
-            .add-icon {
-                font-size: 20px;
-                width: 30px;
-                height: 30px;
-            }
+        .form-container button:hover {
+            background-color: #446e29;
         }
     </style>
 </head>
@@ -165,24 +85,64 @@
         Journal
     </div>
     <div class="container">
-        <div class="journal-card">
-            <div class="journal-title">Mario156</div>
-            <div>
-                Dua tahun lalu, saya mulai merasa lelah dan kurang bertenaga setiap hari. Setelah memeriksakan diri ke dokter, saya sadar bahwa gaya hidup saya yang kurang sehat adalah penyebab utama. Saya terlalu sering makan makanan cepat saji, kurang bergerak, dan pola tidur saya berantakan. Itu menjadi titik balik bagi saya untuk mengubah kebiasaan dan menjalani hidup yang lebih sehat.
-                <br><br>
-                Langkah pertama yang saya ambil adalah memperbaiki pola makan. Saya mengganti makanan cepat saji dengan sayur, buah, biji-bijian, dan protein sehat seperti ikan dan kacang-kacangan. Saya juga belajar memasak sendiri, yang bukan hanya lebih sehat tetapi juga menghemat uang. Di awal, terasa sulit untuk beradaptasi, tetapi lama-kelamaan, makanan sehat menjadi bagian dari keseharian saya.
-                <br><br>
-                Selain itu, saya mulai berolahraga secara teratur. Awalnya saya hanya berjalan kaki selama 30 menit setiap pagi. Ketika stamina saya mulai meningkat, saya menambahkan jogging, yoga, dan latihan beban ringan. Saya juga mencoba aktivitas fisik yang menyenangkan seperti bersepeda dan berenang untuk menjaga motivasi. Olahraga tidak hanya membuat tubuh saya lebih bugar, tetapi juga membantu meningkatkan suasana hati.
-                <br><br>
-                Tak kalah penting, saya fokus pada kesehatan mental. Saya mulai bermeditasi selama 10 menit setiap hari untuk mengurangi stres dan menjaga keseimbangan pikiran. Saya juga memastikan tidur yang cukup, setidaknya 7–8 jam setiap malam. Hal ini membuat saya merasa lebih segar dan siap menghadapi hari.
-                <br><br>
-                Kini, tubuh saya lebih energik, emosi lebih stabil, dan saya merasa lebih bahagia. Hidup sehat memang membutuhkan usaha dan konsistensi, tetapi hasilnya sepadan. Pesan saya untuk siapa pun yang ingin memulai: lakukan langkah kecil terlebih dahulu, seperti mengganti satu makanan tidak sehat atau berjalan kaki setiap hari. Perubahan kecil yang dilakukan terus-menerus akan memberikan dampak besar dalam hidup Anda.
-            </div>
+        <!-- Form Input Journal -->
+        <div class="form-container">
+            <input type="text" id="nama" placeholder="Masukkan Nama">
+            <textarea id="journal" rows="4" placeholder="Tulis journal Anda"></textarea>
+            <button onclick="submitJournal()">Tambahkan Journal</button>
         </div>
+        <!-- List Journal -->
+        <div id="journal-list"></div>
     </div>
-    <div class="footer">
-        <button class="footer-button">Bagikan Pengalaman Anda!</button>
-        <div class="add-icon">+</div>
-    </div>
+
+    <script>
+        // Fungsi untuk mengirim data ke server
+        async function submitJournal() {
+            const nama = document.getElementById('nama').value;
+            const journal = document.getElementById('journal').value;
+
+            if (!nama || !journal) {
+                alert('Nama dan journal harus diisi!');
+                return;
+            }
+
+            const response = await fetch('http://localhost:3001/api/journal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nama, journal }),
+            });
+
+            if (response.ok) {
+                alert('Journal berhasil ditambahkan!');
+                document.getElementById('nama').value = '';
+                document.getElementById('journal').value = '';
+                fetchJournals(); // Refresh list
+            } else {
+                alert('Gagal menambahkan journal!');
+            }
+        }
+
+        // Fungsi untuk mengambil data dari server
+        async function fetchJournals() {
+            const response = await fetch('http://localhost:3001/api/journal');
+            const journals = await response.json();
+
+            const journalList = document.getElementById('journal-list');
+            journalList.innerHTML = '';
+
+            journals.forEach(journal => {
+                const journalCard = document.createElement('div');
+                journalCard.classList.add('journal-card');
+                journalCard.innerHTML = `
+                    <div class="journal-title">${journal.nama}</div>
+                    <div>${journal.journal}</div>
+                `;
+                journalList.appendChild(journalCard);
+            });
+        }
+
+        // Load journals saat halaman dimuat
+        fetchJournals();
+    </script>
 </body>
 </html>
