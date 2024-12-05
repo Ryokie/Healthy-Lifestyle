@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buat Artikel</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <style>
     /* General styling */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
-      min-height: 100vh; /* Ensure the full height of the viewport is covered */
+      min-height: 100vh;
       background-color: #fff;
+      flex-direction: column;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin: 20px;
     }
 
     /* Sidebar styling */
@@ -21,7 +29,7 @@
       color: white;
       padding: 20px;
       box-sizing: border-box;
-      flex-shrink: 0; /* Prevent shrinking */
+      flex-shrink: 0;
     }
 
     .sidebar h2 {
@@ -47,10 +55,21 @@
 
     /* Content area styling */
     .content {
-      flex-grow: 1; /* Allow the content area to grow and fill the remaining space */
+      flex-grow: 1;
       padding: 40px;
       box-sizing: border-box;
       background-color: #E8F5E9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #598234;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
     }
 
     .content h3 {
@@ -60,10 +79,8 @@
     }
 
     form {
-      background-color: #598234;
-      padding: 20px;
-      border-radius: 8px;
-      color: white;
+      display: flex;
+      flex-direction: column;
     }
 
     form label {
@@ -72,18 +89,16 @@
       font-size: 16px;
     }
 
+    form input,
     form textarea {
       width: 100%;
-      margin-bottom: 20px;
       padding: 10px;
-      border: none;
       border-radius: 5px;
-      resize: none;
+      border: none;
+      margin-bottom: 20px;
     }
 
     form button {
-      display: block;
-      margin: 0 auto;
       background-color: white;
       color: #598234;
       border: none;
@@ -91,6 +106,7 @@
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     form button:hover {
@@ -113,15 +129,20 @@
         padding: 20px;
       }
 
+      .form-container {
+        width: 90%;
+        padding: 15px;
+      }
+
       .content h3 {
         font-size: 20px;
       }
 
-      /* Form adjustments */
       form label {
         font-size: 14px;
       }
 
+      form input,
       form textarea {
         font-size: 14px;
       }
@@ -149,6 +170,7 @@
         font-size: 12px;
       }
 
+      form input,
       form textarea {
         font-size: 12px;
       }
@@ -160,29 +182,33 @@
     }
   </style>
 </head>
-<body>
-  <div class="sidebar">
-    <h2>HEALTH</h2>
-    <ul>
-      <li><span>👤</span> User</li>
-      <li><span>📄</span> Artikel</li>
-      <li><span>🍎</span> MPP</li>
-    </ul>
-  </div>
+<body ng-app="artikelApp" ng-controller="ArtikelController">
+
+  <h1>Tambah Artikel</h1>
+
   <div class="content">
-    <h3>Buat Artikel</h3>
-    <form action="artikel.html" method="GET">
-      <label for="judul">Judul Artikel:</label>
-      <textarea id="judul" name="judul" rows="1"></textarea>
+    <div class="form-container">
+      <form ng-submit="submitArticle()">
+        <label for="judul">Judul:</label>
+        <input type="text" id="judul" ng-model="article.judul" required><br>
 
-      <label for="deskripsi">Deskripsi:</label>
-      <textarea id="deskripsi" name="deskripsi" rows="3"></textarea>
+        <label for="deskripsi">Deskripsi:</label>
+        <textarea id="deskripsi" ng-model="article.deskripsi" required></textarea><br>
 
-      <label for="url">URL:</label>
-      <textarea id="url" name="url" rows="1"></textarea>
+        <label for="konten">Konten:</label>
+        <textarea id="konten" ng-model="article.konten" required></textarea><br>
 
-      <button type="submit">Selesai</button>
-    </form>
+        <button type="submit">Tambah Artikel</button>
+      </form>
+
+      <p ng-if="message">{{ message }}</p>
+
+      <a href="artikel.html">
+        <button type="button">Kembali ke Artikel</button>
+      </a>
+    </div>
   </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

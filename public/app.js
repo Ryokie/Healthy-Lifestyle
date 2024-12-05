@@ -57,6 +57,7 @@ menuApp.controller("MenuController", function ($scope, $http) {
             protein: $scope.menu.protein,
             bahanBahan: $scope.menu.bahanBahan,
             tahapPembuatan: $scope.menu.tahapPembuatan,
+            jenisMakanan: $scope.menu.jenisMakanan,
         };
 
         // Send the menu data as JSON to the server
@@ -146,6 +147,34 @@ loginApp2.controller("LoginController2", function ($scope, $http) {
             .catch(function (error) {
                 $scope.message = error.data.message || "Registrasi gagal!";
                 alert($scope.message);
+                console.error("Error:", error);
+            });
+    };
+});
+
+var artikelApp = angular.module('artikelApp', []);
+
+artikelApp.controller('ArtikelController', function($scope, $http) {
+    $scope.article = {};  // To store article form data
+    $scope.message = "";  // To show success or error messages
+
+    // Function to submit article data to the backend
+    $scope.submitArticle = function() {
+        const articleData = {
+            judul: $scope.article.judul,
+            deskripsi: $scope.article.deskripsi,
+            konten: $scope.article.konten
+        };
+
+        // Sending POST request to create an article
+        $http.post('http://localhost:3001/api/artikel', articleData)
+            .then(function(response) {
+                $scope.message = response.data.message;  // Display success message
+                $scope.article = {};  // Clear the form data
+                alert("Artikel berhasil ditambahkan!");
+            })
+            .catch(function(error) {
+                $scope.message = error.data.message || "Gagal menambahkan artikel!";
                 console.error("Error:", error);
             });
     };

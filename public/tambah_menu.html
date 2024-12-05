@@ -200,6 +200,11 @@
                     <label for="tahapPembuatan">Tahap Pembuatan:</label>
                     <textarea id="tahapPembuatan" class="form-control" ng-model="menu.tahapPembuatan" rows="3" placeholder="Masukkan tahap pembuatan" required></textarea>
                 </div>
+                <label for="jenisMakanan">Jenis Makanan:</label>
+        <select id="jenisMakanan" ng-model="menu.jenisMakanan" required>
+            <option value="bulking">Bulking</option>
+            <option value="cutting">Cutting</option>
+        </select>
                 <button type="submit" class="btn btn-submit">Selesai</button>
             </form>
         </div>

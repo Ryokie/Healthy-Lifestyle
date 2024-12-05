@@ -180,7 +180,9 @@ app.post("/api/menu", (req, res) => {
         protein,
         bahanBahan,
         tahapPembuatan,
+        jenisMakanan, // <-- Ini menyebabkan error karena 'jenisMakanan' tidak didefinisikan sebelumnya
     });
+
 
     newMenu
         .save()
