@@ -74,7 +74,6 @@ menuApp.controller("MenuController", function ($scope, $http) {
     };
 });
 
-// Recipe App
 var recipeApp = angular.module("recipeApp", []);
 
 recipeApp.controller("RecipeController", function ($scope, $http) {
@@ -85,7 +84,7 @@ recipeApp.controller("RecipeController", function ($scope, $http) {
     $scope.getRecipes = function () {
         $http.get("http://localhost:3001/api/recipes")
             .then(function (response) {
-                $scope.recipes = response.data; // Store the recipes data in the array
+                $scope.recipes = response.data;
             })
             .catch(function (error) {
                 $scope.message = error.data.message || "Gagal mengambil data menu!";
@@ -109,9 +108,34 @@ recipeApp.controller("RecipeController", function ($scope, $http) {
         }
     };
 
+     // Function to select a recipe for editing
+     $scope.editRecipe = function (recipe) {
+        $scope.selectedRecipe = angular.copy(recipe); // Copy the recipe data to the form
+    };
+
+    // Function to update a recipe
+    $scope.updateRecipe = function () {
+        if (!$scope.selectedRecipe) return;
+
+        const updatedRecipe = $scope.selectedRecipe;
+
+        $http.put(`http://localhost:3001/api/menu/${updatedRecipe._id}`, updatedRecipe)
+            .then(function (response) {
+                $scope.message = response.data.message;
+                alert("Menu berhasil diperbarui!");
+                $scope.getRecipes(); // Refresh the recipe list
+                $scope.selectedRecipe = null; // Clear the form
+            })
+            .catch(function (error) {
+                $scope.message = error.data.message || "Gagal memperbarui menu!";
+                console.error("Error:", error);
+            });
+    };
+
     // Call getRecipes when controller is loaded
     $scope.getRecipes();
 });
+
 
 var loginApp2 = angular.module("loginApp2", []);
 

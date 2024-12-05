@@ -55,6 +55,7 @@ const menuSchema = new mongoose.Schema({
     gambar: { type: String }, // Ganti kosong dengan tipe data String
     bahanBahan: { type: String, required: true },
     tahapPembuatan: { type: String, required: true },
+    jenisMakanan: { type: String, required: true },
 });
 
 const Menu = mongoose.model("Menu", menuSchema);
@@ -169,7 +170,7 @@ app.put("/api/user1", (req, res) => {
 
 
 app.post("/api/menu", (req, res) => {
-    const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan } = req.body;
+    const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan, jenisMakanan } = req.body;
 
     const newMenu = new Menu({
         namaMakanan,
@@ -360,6 +361,48 @@ app.delete("/api/artikel", (req, res) => {
         .catch((err) => res.status(500).json({ error: err.message }));
 });
 
+app.delete('/api/recipes/:id', async (req, res) => {
+    try {
+        const recipeId = req.params.id; // Get the ID from the URL
+        const deletedRecipe = await Menu.findByIdAndDelete(recipeId); // Use the Menu model
+
+        if (!deletedRecipe) {
+            // If no menu item is found
+            return res.status(404).json({ message: "Menu not found" });
+        }
+
+        // Successful deletion
+        res.status(200).json({ message: "Menu deleted successfully", recipe: deletedRecipe });
+    } catch (error) {
+        // Handle other errors
+        console.error("Error deleting menu:", error);
+        res.status(500).json({ message: "Error deleting menu", error: error.message });
+    }
+});
+
+// Update menu
+app.put("/api/menu/:id", (req, res) => {
+    const { id } = req.params;
+    const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan } = req.body;
+
+    Menu.findByIdAndUpdate(id, {
+        namaMakanan,
+        lamaPembuatan,
+        kkal,
+        lemak,
+        karbohidrat,
+        protein,
+        bahanBahan,
+        tahapPembuatan
+    }, { new: true })
+    .then((updatedMenu) => {
+        if (!updatedMenu) {
+            return res.status(404).json({ message: "Menu tidak ditemukan!" });
+        }
+        res.status(200).json({ message: "Menu berhasil diperbarui!", data: updatedMenu });
+    })
+    .catch((err) => res.status(500).json({ error: err.message }));
+});
 
 
 // Start Server
