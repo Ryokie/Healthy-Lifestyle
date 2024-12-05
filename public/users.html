@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="userApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Users</title>
-  <!-- Google Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -47,7 +45,7 @@
     }
 
     .sidebar ul li i {
-      font-size: 24px;
+      font-size: 20px;
       margin-right: 10px;
     }
 
@@ -96,7 +94,7 @@
     }
 
     .search-bar button:hover {
-      background-color: #4a6c2e;
+      background-color: #598234;
     }
 
     /* User Card */
@@ -139,7 +137,7 @@
     }
 
     .user-card button:hover {
-      background-color: #4a6c2e;
+      background-color: #598234;
     }
 
     /* Media Queries for Smaller Devices */
@@ -194,51 +192,70 @@
     }
   </style>
 </head>
-<body>
+<body ng-controller="userController">
   <!-- Sidebar Section -->
   <div class="sidebar">
     <h1>HEALTH</h1>
     <ul>
-      <li><a href="users.html"><i class="material-icons">person</i> User</a></li>
-      <li><a href="artikel.html"><i class="material-icons">article</i> Artikel</a></li>
-      <li><a href="recipes.html"><i class="material-icons">restaurant</i> MPP</a></li>
+      <li><a href="users.html"><i>👤</i> User</a></li>
+      <li><a href="artikel.html"><i>📄</i> Artikel</a></li>
+      <li><a href="recipes.html"><i>🍎</i> MPP</a></li>
     </ul>
   </div>
 
   <!-- Main Content Section -->
   <div class="main-content">
     <div class="search-bar">
-      <input type="text" placeholder="Cari User">
-      <button><i class="material-icons">search</i></button>
+      <input type="text" ng-model="searchText" placeholder="Cari User">
+      <button ng-click="searchUser()">🔍</button>
     </div>
 
-    <!-- User Card -->
-    <div class="user-card">
+    <!-- User Cards -->
+    <div class="user-card" ng-repeat="user in users | filter:searchText">
       <div class="content">
-        <h2>Nama: Steven Wijaya</h2>
-        <p>Username: Tipen</p>
-        <p>Email: stevenwijaya801@gmail.com</p>
+        <h2>Nama: {{ user.nama }}</h2>
+        <p>Username: {{ user.username }}</p>
       </div>
-      <button><i class="material-icons">delete</i> Delete User</button>
-    </div>
-
-    <div class="user-card">
-      <div class="content">
-        <h2>Nama: Steven Wijaya</h2>
-        <p>Username: Tipen</p>
-        <p>Email: stevenwijaya801@gmail.com</p>
-      </div>
-      <button><i class="material-icons">delete</i> Delete User</button>
-    </div>
-
-    <div class="user-card">
-      <div class="content">
-        <h2>Nama: Steven Wijaya</h2>
-        <p>Username: Tipen</p>
-        <p>Email: stevenwijaya801@gmail.com</p>
-      </div>
-      <button><i class="material-icons">delete</i> Delete User</button>
+      <button ng-click="deleteUser(user.username)">Delete User</button>
     </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    // AngularJS App
+    var app = angular.module('userApp', []);
+
+    app.controller('userController', function($scope, $http) {
+      $scope.users = [];
+
+      // Fetch users from API
+      $scope.getUsers = function() {
+        $http.get("http://localhost:3001/api/user1")
+          .then(function(response) {
+            $scope.users = response.data;
+          })
+          .catch(function(error) {
+            alert("Gagal mengambil data pengguna.");
+          });
+      };
+
+      // Delete user
+      $scope.deleteUser = function(username) {
+        if (confirm("Anda yakin ingin menghapus pengguna ini?")) {
+          $http.delete("http://localhost:3001/api/user1", { data: { username: username }, headers: { "Content-Type": "application/json" } })
+            .then(function(response) {
+              alert(response.data.message);
+              $scope.getUsers(); // Refresh user list
+            })
+            .catch(function(error) {
+              alert("Gagal menghapus pengguna.");
+            });
+        }
+      };
+
+      // Initial load
+      $scope.getUsers();
+    });
+  </script>
 </body>
 </html>

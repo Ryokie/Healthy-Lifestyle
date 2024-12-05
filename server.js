@@ -83,6 +83,57 @@ const upload = (req, res, next) => {
     next(); // Bypass multer since we no longer need file handling
 };
 
+// Delete user berdasarkan username
+app.delete("/api/user1", (req, res) => {
+    const { username } = req.body;
+
+    if (!username) {
+        return res.status(400).json({ message: "Username harus disediakan!" });
+    }
+
+    User1.findOneAndDelete({ username }) // Ganti User dengan User1
+        .then((deletedUser) => {
+            if (!deletedUser) {
+                return res.status(404).json({ message: "User tidak ditemukan!" });
+            }
+            res.status(200).json({ message: "User berhasil dihapus!" });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+
+app.get("/api/user1", (req, res) => {
+    User1.find()
+        .then((users) => res.status(200).json(users))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+
+// Update user berdasarkan username
+app.put("/api/user1", (req, res) => {
+    const { username, passwordBaru } = req.body;
+
+    if (!username || !passwordBaru) {
+        return res.status(400).json({ message: "Username dan password baru harus disediakan!" });
+    }
+
+    bcrypt.hash(passwordBaru, 10)
+        .then((hashedPassword) => {
+            return User.findOneAndUpdate(
+                { username },
+                { password: hashedPassword },
+                { new: true }
+            );
+        })
+        .then((updatedUser) => {
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User tidak ditemukan!" });
+            }
+            res.status(200).json({ message: "User berhasil diperbarui!", data: updatedUser });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
 
 app.post("/api/menu", (req, res) => {
     const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan } = req.body;
@@ -195,6 +246,86 @@ app.post("/login/users1", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+// Artikel Schema
+const artikelSchema = new mongoose.Schema({
+    judul: { type: String, required: true },
+    deskripsi: { type: String, required: true },
+    konten: { type: String, required: true },
+    tanggal: { type: Date, default: Date.now },
+});
+
+// Artikel Model
+const Artikel = mongoose.model("Artikel", artikelSchema);
+
+// Endpoint untuk menambahkan artikel baru
+app.post("/api/artikel", (req, res) => {
+    const { judul, deskripsi, konten } = req.body;
+
+    // Validasi sederhana sebelum menyimpan
+    if (!judul || !deskripsi || !konten) {
+        return res.status(400).json({ message: "Semua field harus diisi!" });
+    }
+
+    const newArtikel = new Artikel({
+        judul,
+        deskripsi,
+        konten,
+    });
+
+    newArtikel
+        .save()
+        .then(() => res.status(201).json({ message: "Artikel berhasil ditambahkan!" }))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+// Endpoint untuk mendapatkan semua artikel
+app.get("/api/artikel", (req, res) => {
+    Artikel.find()
+        .then((artikels) => res.status(200).json(artikels))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+app.put("/api/artikel", (req, res) => {
+    const { judul, deskripsi, konten, judulBaru } = req.body;
+
+    if (!judul || !deskripsi || !konten) {
+        return res.status(400).json({ message: "Judul, deskripsi, dan konten harus diisi!" });
+    }
+
+    Artikel.findOneAndUpdate(
+        { judul: judul },
+        { judul: judulBaru || judul, deskripsi, konten },
+        { new: true } // Mengembalikan artikel yang diperbarui
+    )
+        .then((updatedArtikel) => {
+            if (!updatedArtikel) {
+                return res.status(404).json({ message: "Artikel tidak ditemukan!" });
+            }
+            res.status(200).json({ message: "Artikel berhasil diperbarui!", data: updatedArtikel });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+
+app.delete("/api/artikel", (req, res) => {
+    const { judul } = req.body;
+
+    if (!judul) {
+        return res.status(400).json({ message: "Judul artikel harus disediakan!" });
+    }
+
+    Artikel.findOneAndDelete({ judul: judul })
+        .then((deletedArtikel) => {
+            if (!deletedArtikel) {
+                return res.status(404).json({ message: "Artikel tidak ditemukan!" });
+            }
+            res.status(200).json({ message: "Artikel berhasil dihapus!" });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+
 
 // Start Server
 const PORT = 3001;

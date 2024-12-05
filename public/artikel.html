@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="artikelApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artikel</title>
-  <!-- Google Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -56,10 +54,6 @@
       gap: 10px;
     }
 
-    .sidebar ul li i {
-      font-size: 24px;
-    }
-
     .main-content {
       flex: 1;
       background-color: #f9f9f9;
@@ -85,7 +79,7 @@
     }
 
     .button-container button:hover {
-      background-color: #4a6c2e;
+      background-color: #598234;
     }
 
     /* Artikel Card */
@@ -190,47 +184,126 @@
     }
   </style>
 </head>
-<body>
+<body ng-controller="ArtikelController">
   <!-- Sidebar Section -->
   <div class="sidebar">
     <h1>HEALTH</h1>
     <ul>
-      <li><a href="users.html"><i class="material-icons">person</i> User</a></li>
-      <li><a href="artikel.html"><i class="material-icons">article</i> Artikel</a></li>
-      <li><a href="mealprep.html"><i class="material-icons">restaurant</i> MPP</a></li>
+      <li><a href="users.html"><i>👤</i> User</a></li>
+      <li><a href="artikel.html"><i>📄</i> Artikel</a></li>
+      <li><a href="recipes.html"><i>🍎</i> MPP</a></li>
     </ul>
   </div>
 
   <!-- Main Content Section -->
   <div class="main-content">
     <div class="button-container">
-      <button><i class="material-icons">add</i> Buat Artikel Baru</button>
+      <a href="buat_artikel.html"><button>Buat Artikel Baru</button></a>
     </div>
 
-    <!-- Artikel Card -->
-    <div class="article-card">
+    <div class="article-card" ng-repeat="artikel in artikels">
       <div class="content">
-        <h2>From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</h2>
-        <p>Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</p>
+        <h2>{{ artikel.judul }}</h2>
+        <p>{{ artikel.deskripsi }}</p>
       </div>
-      <button><i class="material-icons">edit</i> Edit</button>
+      <div>
+        <button ng-click="editArtikel(artikel)">Edit</button>
+        <button ng-click="deleteArtikelByTitle(artikel.judul)">Hapus</button>
+      </div>
     </div>
+    
+    
 
-    <div class="article-card">
-      <div class="content">
-        <h2>Manfaat Olahraga Pagi untuk Kesehatan</h2>
-        <p>Olahraga pagi membantu menjaga tubuh tetap fit, mengurangi stres, dan meningkatkan fokus sepanjang hari.</p>
-      </div>
-      <button><i class="material-icons">edit</i> Edit</button>
-    </div>
-
-    <div class="article-card">
-      <div class="content">
-        <h2>Pentingnya Tidur Cukup</h2>
-        <p>Tidur yang cukup membantu memperbaiki sel-sel tubuh dan meningkatkan energi untuk aktivitas sehari-hari.</p>
-      </div>
-      <button><i class="material-icons">edit</i> Edit</button>
+  <!-- Modal untuk Edit Artikel -->
+  <div ng-show="isEditing" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 20px; border-radius: 10px; width: 500px;">
+      <h3>Edit Artikel</h3>
+      <label for="editJudul">Judul:</label>
+      <input type="text" id="editJudul" ng-model="selectedArtikel.judul" style="width: 100%; margin-bottom: 10px;">
+      
+      <label for="editDeskripsi">Deskripsi:</label>
+      <textarea id="editDeskripsi" ng-model="selectedArtikel.deskripsi" style="width: 100%; margin-bottom: 10px;"></textarea>
+      
+      <label for="editKonten">Konten:</label>
+      <textarea id="editKonten" ng-model="selectedArtikel.konten" style="width: 100%; margin-bottom: 10px;"></textarea>
+      
+      <button ng-click="saveArtikel()">Simpan</button>
+      <button ng-click="cancelEdit()">Batal</button>
     </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module("artikelApp", []);
+
+    app.controller("ArtikelController", function ($scope, $http) {
+        $scope.artikels = []; // Array untuk menyimpan artikel
+        $scope.isEditing = false; // Flag untuk modal edit
+        $scope.selectedArtikel = {}; // Artikel yang sedang diedit
+
+        // Fungsi untuk mengambil artikel dari API
+        $scope.getArtikels = function () {
+            $http.get("http://localhost:3001/api/artikel")
+                .then(function (response) {
+                    $scope.artikels = response.data; // Simpan data artikel
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        };
+
+        // Fungsi untuk memulai proses edit artikel
+        $scope.editArtikel = function (artikel) {
+            $scope.isEditing = true;
+            $scope.selectedArtikel = angular.copy(artikel); // Buat salinan artikel untuk diedit
+        };
+
+        $scope.deleteArtikelByTitle = function (judul) {
+    if (confirm("Apakah Anda yakin ingin menghapus artikel berjudul '" + judul + "'?")) {
+        $http.delete("http://localhost:3001/api/artikel", {
+            data: { judul: judul },
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(function (response) {
+                alert(response.data.message);
+                $scope.getArtikels(); // Refresh daftar artikel setelah dihapus
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+            });
+    }
+};
+
+$scope.saveArtikel = function () {
+    const data = {
+        judul: $scope.selectedArtikel.judul, // Judul lama
+        deskripsi: $scope.selectedArtikel.deskripsi,
+        konten: $scope.selectedArtikel.konten,
+        judulBaru: $scope.selectedArtikel.judulBaru, // Jika ingin mengubah judul
+    };
+
+    $http.put("http://localhost:3001/api/artikel", data)
+        .then(function (response) {
+            alert(response.data.message);
+            $scope.isEditing = false; // Tutup modal
+            $scope.getArtikels(); // Refresh data artikel
+        })
+        .catch(function (error) {
+            console.error("Error:", error);
+        });
+};
+
+
+
+        // Fungsi untuk membatalkan edit
+        $scope.cancelEdit = function () {
+            $scope.isEditing = false;
+            $scope.selectedArtikel = {};
+        };
+
+        // Panggil fungsi untuk mendapatkan artikel saat halaman dimuat
+        $scope.getArtikels();
+    });
+  </script>
 </body>
 </html>
