@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artikel</title>
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,6 +56,10 @@
       gap: 10px;
     }
 
+    .sidebar ul li i {
+      font-size: 24px;
+    }
+
     .main-content {
       flex: 1;
       background-color: #f9f9f9;
@@ -79,7 +85,7 @@
     }
 
     .button-container button:hover {
-      background-color: #598234;
+      background-color: #4a6c2e;
     }
 
     /* Artikel Card */
@@ -189,16 +195,16 @@
   <div class="sidebar">
     <h1>HEALTH</h1>
     <ul>
-      <li><a href="users.html"><i>👤</i> User</a></li>
-      <li><a href="artikel.html"><i>📄</i> Artikel</a></li>
-      <li><a href="#"><i>🍎</i> MPP</a></li>
+      <li><a href="users.html"><i class="material-icons">person</i> User</a></li>
+      <li><a href="artikel.html"><i class="material-icons">article</i> Artikel</a></li>
+      <li><a href="mealprep.html"><i class="material-icons">restaurant</i> MPP</a></li>
     </ul>
   </div>
 
   <!-- Main Content Section -->
   <div class="main-content">
     <div class="button-container">
-      <button>Buat Artikel Baru</button>
+      <button><i class="material-icons">add</i> Buat Artikel Baru</button>
     </div>
 
     <!-- Artikel Card -->
@@ -207,7 +213,7 @@
         <h2>From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</h2>
         <p>Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</p>
       </div>
-      <button>Edit</button>
+      <button><i class="material-icons">edit</i> Edit</button>
     </div>
 
     <div class="article-card">
@@ -215,7 +221,7 @@
         <h2>Manfaat Olahraga Pagi untuk Kesehatan</h2>
         <p>Olahraga pagi membantu menjaga tubuh tetap fit, mengurangi stres, dan meningkatkan fokus sepanjang hari.</p>
       </div>
-      <button>Edit</button>
+      <button><i class="material-icons">edit</i> Edit</button>
     </div>
 
     <div class="article-card">
@@ -223,7 +229,7 @@
         <h2>Pentingnya Tidur Cukup</h2>
         <p>Tidur yang cukup membantu memperbaiki sel-sel tubuh dan meningkatkan energi untuk aktivitas sehari-hari.</p>
       </div>
-      <button>Edit</button>
+      <button><i class="material-icons">edit</i> Edit</button>
     </div>
   </div>
 </body>
