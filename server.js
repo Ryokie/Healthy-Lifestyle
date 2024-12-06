@@ -12,17 +12,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Buat folder 'assets' jika belum ada
-const assetsFolder = path.join(__dirname, "assets");
-if (!fs.existsSync(assetsFolder)) {
-    fs.mkdirSync(assetsFolder);
-    console.log("Folder 'assets' berhasil dibuat.");
-} else {
-    console.log("Folder 'assets' sudah ada.");
-}
-
-// Serve static files (images) from the 'assets' folder
-app.use('/assets', express.static('assets'));
 
 // MongoDB Connection
 mongoose.connect("mongodb://localhost:27017/frontend", {
@@ -181,7 +170,7 @@ app.post("/api/menu", (req, res) => {
         protein,
         bahanBahan,
         tahapPembuatan,
-        jenisMakanan, // <-- Ini menyebabkan error karena 'jenisMakanan' tidak didefinisikan sebelumnya
+        jenisMakanan,
     });
 
 
@@ -190,9 +179,6 @@ app.post("/api/menu", (req, res) => {
         .then(() => res.status(201).json({ message: "Menu berhasil ditambahkan!" }))
         .catch((err) => res.status(500).json({ error: err.message }));
 });
-
-
-
 
 // Fetch all menu items
 app.get("/api/recipes", (req, res) => {
@@ -404,6 +390,48 @@ app.put("/api/menu/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err.message }));
 });
 
+app.get("/api/recipes/cutting", (req, res) => {
+    Menu.find({ jenisMakanan: "cutting" })
+        .then((menus) => res.status(200).json(menus))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+app.get("/api/recipes/bulking", (req, res) => {
+    Menu.find({ jenisMakanan: "bulking" })
+        .then((menus) => res.status(200).json(menus))
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+// Update menu by ID
+app.put("/api/recipes/:id", (req, res) => {  // Sesuaikan endpoint menjadi /api/recipes/:id
+    const { id } = req.params;  // Mendapatkan ID dari parameter URL
+    const { namaMakanan, lamaPembuatan, kkal, lemak, karbohidrat, protein, bahanBahan, tahapPembuatan, jenisMakanan } = req.body;
+
+    // Mencari menu berdasarkan ID dan memperbarui data yang diterima
+    Menu.findByIdAndUpdate(id, {
+        namaMakanan,
+        lamaPembuatan,
+        kkal,
+        lemak,
+        karbohidrat,
+        protein,
+        bahanBahan,
+        tahapPembuatan,
+        jenisMakanan
+    }, { new: true })  // { new: true } untuk mengembalikan data yang telah diperbarui
+    .then((updatedMenu) => {
+        if (!updatedMenu) {
+            // Jika menu tidak ditemukan berdasarkan ID
+            return res.status(404).json({ message: "Menu tidak ditemukan!" });
+        }
+        // Mengirim respons sukses dengan data menu yang diperbarui
+        res.status(200).json({ message: "Menu berhasil diperbarui!", data: updatedMenu });
+    })
+    .catch((err) => {
+        // Menangani error yang terjadi saat update
+        res.status(500).json({ error: err.message });
+    });
+});
 
 // Start Server
 const PORT = 3001;

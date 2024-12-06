@@ -121,19 +121,37 @@
         <a href="mealmore.html" class="back-button">&#8592;</a>
         Articles
     </div>
-    <div class="container">
-        <div class="article-card">
-            <div class="article-title">From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</div>
-            <div class="article-description">Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</div>
-        </div>
-        <div class="article-card">
-            <div class="article-title">From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</div>
-            <div class="article-description">Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</div>
-        </div>
-        <div class="article-card">
-            <div class="article-title">From Chaos to Balance, Tips Gaya Hidup Sehat ala Gen Z yang Anti Ribet</div>
-            <div class="article-description">Kalian sering merasa jompo? Gampang capek dan lemas? Atau bahkan gampang sakit? Mari kita sama-sama tau penyebab dan tips gaya hidup sehat ala Gen Z!</div>
-        </div>
+    <div class="container" id="articles-list">
+        <!-- Articles will be inserted here dynamically -->
     </div>
+    <script>
+        // Fetch articles from the API
+        fetch('http://localhost:3001/api/artikel')
+            .then(response => response.json())
+            .then(data => {
+                // Ensure there are articles to display
+                if (data.length === 0) {
+                    document.getElementById('articles-list').innerHTML = '<p>No articles available.</p>';
+                    return;
+                }
+
+                // Loop through the articles and create HTML for each article
+                const articlesList = data.map(article => {
+                    return `
+                        <div class="article-card">
+                            <a href="${article.konten}" class="article-title" target="_blank">${article.judul}</a>
+                            <div class="article-description">${article.deskripsi}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Insert the articles into the HTML
+                document.getElementById('articles-list').innerHTML = articlesList;
+            })
+            .catch(error => {
+                console.error('Error fetching articles:', error);
+                document.getElementById('articles-list').innerHTML = '<p>Error loading articles.</p>';
+            });
+    </script>
 </body>
 </html>

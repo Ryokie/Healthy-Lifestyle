@@ -79,6 +79,8 @@ var recipeApp = angular.module("recipeApp", []);
 recipeApp.controller("RecipeController", function ($scope, $http) {
     $scope.recipes = []; // Array to store menu data
     $scope.message = "";
+    $scope.isEditing = false; // Pastikan modal tidak muncul pada awalnya
+    $scope.selectedRecipe = {};
 
     // Function to get all recipes
     $scope.getRecipes = function () {
@@ -110,29 +112,25 @@ recipeApp.controller("RecipeController", function ($scope, $http) {
 
      // Function to select a recipe for editing
      $scope.editRecipe = function (recipe) {
-        $scope.selectedRecipe = angular.copy(recipe); // Copy the recipe data to the form
+        $scope.isEditing = true;
+        $scope.selectedRecipe = angular.copy(recipe); // Buat salinan resep untuk diedit
     };
 
-    // Function to update a recipe
-    $scope.updateRecipe = function () {
-        if (!$scope.selectedRecipe) return;
-
-        const updatedRecipe = $scope.selectedRecipe;
-
-        $http.put(`http://localhost:3001/api/menu/${updatedRecipe._id}`, updatedRecipe)
+    $scope.saveRecipe = function () {
+        $http.put("http://localhost:3001/api/recipes/" + $scope.selectedRecipe._id, $scope.selectedRecipe)
             .then(function (response) {
-                $scope.message = response.data.message;
-                alert("Menu berhasil diperbarui!");
-                $scope.getRecipes(); // Refresh the recipe list
-                $scope.selectedRecipe = null; // Clear the form
+                $scope.isEditing = false; // Tutup modal edit
+                $scope.getRecipes(); // Refresh daftar resep
             })
             .catch(function (error) {
-                $scope.message = error.data.message || "Gagal memperbarui menu!";
-                console.error("Error:", error);
+                console.error("Error saving recipe:", error);
             });
     };
 
-    // Call getRecipes when controller is loaded
+    $scope.cancelEdit = function () {
+        $scope.isEditing = false;
+    };
+
     $scope.getRecipes();
 });
 
@@ -203,3 +201,47 @@ artikelApp.controller('ArtikelController', function($scope, $http) {
             });
     };
 });
+
+var cuttingApp = angular.module("cuttingApp", []);
+
+cuttingApp.controller("CuttingController", function ($scope, $http) {
+    $scope.menus = [];  // Array to hold the menu items
+    $scope.message = ""; // Message for displaying error or success
+
+    // Function to fetch the cutting menu items
+    $scope.getCuttingMenu = function () {
+        $http.get("http://localhost:3001/api/recipes/cutting")
+            .then(function (response) {
+                $scope.menus = response.data;  // Populate menus with the data from the backend
+            })
+            .catch(function (error) {
+                $scope.message = "Gagal mengambil data menu cutting!";
+                console.error("Error fetching cutting menus:", error);
+            });
+    };
+
+    // Call the function to load the menus when the page loads
+    $scope.getCuttingMenu();
+});
+
+var recipeApp = angular.module("recipeApp", []);
+
+recipeApp.controller("RecipeController", function ($scope, $http) {
+    $scope.recipes = [];  // Array untuk menyimpan data menu
+    $scope.message = "";
+    
+    $scope.getBulkingRecipes = function () {
+        $http.get("http://localhost:3001/api/recipes/bulking")
+            .then(function (response) {
+                $scope.recipes = response.data;  // Menyimpan data menu bulking
+            })
+            .catch(function (error) {
+                $scope.message = error.data.message || "Gagal mengambil menu bulking!";
+                console.error("Error:", error);
+            });
+    };
+
+    // Memanggil fungsi untuk mendapatkan menu bulking saat halaman dimuat
+    $scope.getBulkingRecipes();
+});
+

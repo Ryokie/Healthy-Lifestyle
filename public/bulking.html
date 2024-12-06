@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="recipeApp">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Prep Planner</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
     <style>
         /* Body Styling */
         body {
@@ -159,9 +161,8 @@
     </style>
 </head>
 
-<body>
-    <!-- Header Section -->
-    <!-- Header Section -->
+<body ng-controller="RecipeController">
+
     <div class="header">
         <h1>Meal Prep Planner (Bulking)</h1>
         <!-- Menu Button (Home) -->
@@ -169,7 +170,6 @@
             <button class="menu-button" aria-label="Buat Menu">Home</button>
         </a>
     </div>
-
 
     <!-- Toggle Buttons -->
     <div class="toggle-buttons">
@@ -179,57 +179,28 @@
         <button class="btn" id="cuttingButton">Cutting</button>
     </div>
 
-    <!-- Cards Section -->
-    <div class="container">
+    <div class="container" ng-if="recipes.length > 0">
         <div class="row justify-content-center">
-            <!-- Card 1 -->
-            <div class="col-md-3 col-sm-6 meal-card">
-                <img src="https://via.placeholder.com/300" alt="Sandwich">
-                <h4>Sandwich</h4>
+            <!-- Card untuk setiap resep bulking -->
+            <div class="col-md-3 col-sm-6 meal-card" ng-repeat="recipe in recipes">
+                <h4>{{ recipe.namaMakanan }}</h4>
                 <div class="info">
-                    <p>⏱ 15 Min</p>
+                    <p>⏱ {{ recipe.lamaPembuatan }} Min</p>
                     <ul>
-                        <li>361 Kcal</li>
-                        <li>16.7 gram lemak</li>
-                        <li>32.5 gram karbohidrat</li>
-                        <li>19.3 gram protein</li>
+                        <li>{{ recipe.kkal }} Kcal</li>
+                        <li>{{ recipe.lemak }} gram lemak</li>
+                        <li>{{ recipe.karbohidrat }} gram karbohidrat</li>
+                        <li>{{ recipe.protein }} gram protein</li>
                     </ul>
+                    <p><strong>Bahan-bahan:</strong> {{ recipe.bahanBahan }}</p>
+                    <p><strong>Langkah Pembuatan:</strong> {{ recipe.tahapPembuatan }}</p>
                 </div>
-                <button onclick="window.location.href='mealbulk.html'">Tutorial</button>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="col-md-3 col-sm-6 meal-card">
-                <img src="https://via.placeholder.com/300" alt="Nasi Goreng">
-                <h4>Nasi Goreng</h4>
-                <div class="info">
-                    <p>⏱ 25 Min</p>
-                    <ul>
-                        <li>333 Kcal</li>
-                        <li>12.34 gram lemak</li>
-                        <li>41.7 gram karbohidrat</li>
-                        <li>12.47 gram protein</li>
-                    </ul>
-                </div>
-                <button onclick="window.location.href='mealbulk.html'">Tutorial</button>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="col-md-3 col-sm-6 meal-card">
-                <img src="https://via.placeholder.com/300" alt="Rendang">
-                <h4>Rendang</h4>
-                <div class="info">
-                    <p>⏱ 15 Min</p>
-                    <ul>
-                        <li>468 Kcal</li>
-                        <li>26.57 gram lemak</li>
-                        <li>10.7 gram karbohidrat</li>
-                        <li>47 gram protein</li>
-                    </ul>
-                </div>
-                <button onclick="window.location.href='mealbulk.html'">Tutorial</button>
             </div>
         </div>
+    </div>
+    <!-- Pesan jika tidak ada menu yang ditemukan -->
+    <div class="container" ng-if="recipes.length === 0">
+        <p class="alert alert-warning">Tidak ada menu bulking yang tersedia.</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
